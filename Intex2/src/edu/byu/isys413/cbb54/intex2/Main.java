@@ -12,7 +12,7 @@
 package edu.byu.isys413.cbb54.intex2;
 
 import edu.byu.isys413.cbb54.intex2.data.*;
-import edu.byu.isys413.cbb54.intex2.views.GUI;
+import edu.byu.isys413.cbb54.intex2.views.*;
 
 
 
