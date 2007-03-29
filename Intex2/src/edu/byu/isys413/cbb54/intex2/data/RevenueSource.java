@@ -58,10 +58,6 @@ public class RevenueSource {
         return dirty;
     }
 
-    public void setDirty(boolean dirty) {
-        this.dirty = dirty;
-    }
-
     public boolean isInDB() {
         return isInDB;
     }
