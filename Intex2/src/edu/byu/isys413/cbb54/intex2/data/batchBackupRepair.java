@@ -9,6 +9,13 @@
 
 package edu.byu.isys413.cbb54.intex2.data;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.LinkedList;
+import java.util.List;
+
 /**
  *
  * @author kyle
@@ -18,9 +25,9 @@ public class batchBackupRepair {
     /** Creates a new instance of batchBackupRepair */
     public batchBackupRepair() {
     }
-    public void batch() {
+    public void batch() throws DataException {
         Connection conn = null;
-        List<String> repairEmails = new List<String>();
+        List<String> repairEmails = new LinkedList<String>();
         
         try {
             // retrieve a database connection from the pool
@@ -28,28 +35,26 @@ public class batchBackupRepair {
             
             // select repair transactions which are 30 days old and send email
             PreparedStatement ps = conn.prepareStatement("SELECT * FROM \"backupRepair\" WHERE \"dateEnded\" <= ?");
-            ps.setString(1, (System.currentTimeMillis() - (30*24*60*60*1000))); //subtract num of miliseconds in 30 days from current time
+            ps.setString(1, Long.toString((System.currentTimeMillis()) - (long)(30*24*60*60*1000))); //subtract num of miliseconds in 30 days from current time
             ResultSet rs = ps.executeQuery();
             
-            for (String id : rs.getString("id")){
+            while(rs.next()){
+                // select transactionline using repair revenuesource id
                 PreparedStatement txlinePS = conn.prepareStatement("SELECT * FROM \"transactionline\" WHERE \"revenuesourceid\" = ?");
-                txlinePS.setString(1, id); //subtract num of miliseconds in 30 days from current time
+                txlinePS.setString(1, rs.getString("id")); //subtract num of miliseconds in 30 days from current time
                 ResultSet txlineRS = ps.executeQuery();
                 
-                // select * from transaction using resultset id
-                PreparedStatement transPS = conn.prepareStatement("SELECT * FROM \"transaction\" WHERE \"id\" = ?");
-                transPS.setString(1, txlineRS.getString("transactionid"));
-                ResultSet transRS = transPS.executeQuery();
-                
-                // select * from customer using transaction id
-                PreparedStatement membPS = conn.prepareStatement("SELECT * FROM \"membership\" WHERE \"custid\" = ?");
-                memebPS.setString(1, transRS.getString("custid"));
-                ResultSet membRS = membPS.executeQuery();
+                // use transaction id to get customer's email
+                Transaction trans = TransactionDAO.getInstance().read(txlineRS.getString("transactionid"));
+                Customer cust = CustomerDAO.getInstance().read(trans.getCustomer().getId());
                 
                 //add email of customer to list
-                repairEmails.add(membRS.getString(""))
+                repairEmails.add(cust.getEmail());
             }
             
+            // email people
+            
+            System.out.println(repairEmails);
             
             
             
@@ -71,7 +76,7 @@ public class batchBackupRepair {
                 throw new DataException("Big error: could not even release the connection", e2);
             }
             
-            throw new DataException("Could not retrieve record for id=" + id, e);
+            throw new DataException("Could not retrieve record for id=" + e);
         }
         
         
@@ -83,8 +88,9 @@ public class batchBackupRepair {
 // if expired -- email customer // else charge card
         
     }
-    /**In a nightly cycle you must generate notices to customers whose items have been repaired and who have not picked them up within 30 days of when
-     * the work was complete.  You must also generate renewal billings for customers whose expiration date for their backup  service has arrived.
-     * Automatically charge their credit cards for the renewal amount.  If the expiration date of the credit card has arrived,
-     * send a notice to the customer that their backup service will terminate if they do not update their credit card information.
-     **/
+}
+/**In a nightly cycle you must generate notices to customers whose items have been repaired and who have not picked them up within 30 days of when
+ * the work was complete.  You must also generate renewal billings for customers whose expiration date for their backup  service has arrived.
+ * Automatically charge their credit cards for the renewal amount.  If the expiration date of the credit card has arrived,
+ * send a notice to the customer that their backup service will terminate if they do not update their credit card information.
+ **/

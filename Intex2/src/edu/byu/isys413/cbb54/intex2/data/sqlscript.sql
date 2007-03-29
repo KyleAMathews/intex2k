@@ -123,7 +123,7 @@ create table "transactionline"
     "id" varchar(30) not null primary key,
     "revenuesourceid" varchar(30),
     "transactionid" varchar(30),
-    "rstyle" varchar(30)
+    "rstype" varchar(30)
 );
  
 create table "coupon"

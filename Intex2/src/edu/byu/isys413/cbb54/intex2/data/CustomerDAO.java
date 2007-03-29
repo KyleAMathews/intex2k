@@ -143,6 +143,7 @@ public class CustomerDAO {
                 cust.setState(rs.getString("state"));
                 cust.setZip(rs.getString("zip"));
                 cust.setPhone(rs.getString("phone"));
+                cust.setEmail(rs.getString("email"));
                 cust.setIsInDB(true);
                 cust.setDirty(false);
                 
@@ -262,7 +263,7 @@ public class CustomerDAO {
         PreparedStatement update = conn.prepareStatement(
             "UPDATE \"customer\"" +
                 "SET \"fname\" = ?, \"lname\" = ?, \"address1\" = ?, \"address2\" = ?," +
-                "\"city\" = ?, \"state\" = ?, \"zip\" = ?, \"phone\" = ?" +
+                "\"city\" = ?, \"state\" = ?, \"zip\" = ?, \"phone\" = ?, \"email\" = ?" +
                 "WHERE \"id\" = ?");
         update.setString(1, cust.getFname());
         update.setString(2, cust.getLname());
@@ -272,7 +273,8 @@ public class CustomerDAO {
         update.setString(6, cust.getState());
         update.setString(7, cust.getZip());
         update.setString(8, cust.getPhone());
-        update.setString(9, cust.getId());
+        update.setString(9, cust.getEmail());
+        update.setString(10, cust.getId());
         
         // execute and commit the query
         update.executeUpdate();
@@ -297,7 +299,7 @@ public class CustomerDAO {
     private synchronized void insert(Customer cust, Connection conn) throws SQLException, DataException {
         // do the insert SQL statement
         PreparedStatement insert = conn.prepareStatement(
-            "INSERT INTO \"customer\" VALUES(?,?,?,?,?,?,?,?,?)");
+            "INSERT INTO \"customer\" VALUES(?,?,?,?,?,?,?,?,?,?)");
         insert.setString(1, cust.getId());
         insert.setString(2, cust.getFname());
         insert.setString(3, cust.getLname());
@@ -307,6 +309,7 @@ public class CustomerDAO {
         insert.setString(7, cust.getState());
         insert.setString(8, cust.getZip());
         insert.setString(9, cust.getPhone());
+        insert.setString(10, cust.getEmail());
 
         
         // execute and commit the query

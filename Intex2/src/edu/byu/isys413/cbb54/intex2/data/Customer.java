@@ -28,6 +28,7 @@ public class Customer {
     private String state;
     private String zip;
     private String phone;
+    private String email;
     private long lastUpdated;
     private Membership membership;
 
@@ -244,6 +245,14 @@ public class Customer {
     public void setMembership(Membership membership) {
         this.dirty = true;
         this.membership = membership;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
 }

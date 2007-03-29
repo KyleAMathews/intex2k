@@ -19,6 +19,7 @@ public class TransactionLine {
     private RevenueSource revenueSource;
     private Transaction transaction;
     private Coupon coupon;
+    private String rsType;
     private boolean dirty = false;
     private boolean isInDB = false;
     
@@ -78,6 +79,14 @@ public class TransactionLine {
             sub -= coupon.getAmount();
         }
         return sub;
+    }
+
+    public String getRsType() {
+        return rsType;
+    }
+
+    public void setRsType(String rsType) {
+        this.rsType = rsType;
     }
 
     

@@ -24,6 +24,8 @@ public class Membership {
         private String endDate;
         private String creditCard;
         private String ccExpiration;
+        private double backupSize;
+        private long backupExpDate;
         private Boolean newsletter = false;
         private List interests;
         private Customer customer;
@@ -204,6 +206,22 @@ public class Membership {
     public void setCustomer(Customer customer) {
         this.dirty = true;
         this.customer = customer;
+    }
+
+    public double getBackupSize() {
+        return backupSize;
+    }
+
+    public void setBackupSize(double backUpsize) {
+        this.backupSize = backupSize;
+    }
+
+    public long getBackupExpDate() {
+        return backupExpDate;
+    }
+
+    public void setBackupExpDate(long expDate) {
+        this.backupExpDate = backupExpDate;
     }
     
 }

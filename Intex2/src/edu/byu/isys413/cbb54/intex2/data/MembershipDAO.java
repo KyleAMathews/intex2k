@@ -10,7 +10,6 @@
 package edu.byu.isys413.cbb54.intex2.data;
 
 import java.sql.*;
-import java.util.LinkedList;
 import java.util.List;
 
 
@@ -164,6 +163,8 @@ public class MembershipDAO {
         mem.setCreditCard(rs.getString("creditCard"));
         mem.setCcExpiration(rs.getString("ccExpiration"));
         mem.setNewsletter(rs.getBoolean("newsletter"));
+        mem.setBackupSize(Double.valueOf(rs.getString("backupSize")));
+        mem.setBackupExpDate(Long.getLong(rs.getString("backupExpDate")));
         mem.setInterests(MemberInterestDAO.getInstance().read(mem.getId(),conn));
         mem.setInDB(true);
         mem.setDirty(false);
@@ -260,15 +261,16 @@ public class MembershipDAO {
         PreparedStatement update = conn.prepareStatement(
             "UPDATE \"membership\"" +
                 "SET \"startDate\" = ?, \"endDate\" = ?, \"creditCard\" = ?, \"ccExpiration\" = ?," +
-                "\"newsletter\" = ? " +
+                "\"newsletter\" = ?, \"backupSize\" = ?, \"backupExpDate\" = ?" +
                 "WHERE \"id\" = ?");
         update.setString(1, mem.getStartDate());
         update.setString(2, mem.getEndDate());
         update.setString(3, mem.getCreditCard());
         update.setString(4, mem.getCcExpiration());
         update.setBoolean(5, mem.getNewsletter());
-        update.setString(6, mem.getId());
-
+        update.setString(6, Double.toString(mem.getBackupSize()));
+        update.setString(7, Long.toString(mem.getBackupExpDate()));
+        update.setString(8, mem.getId());
 
         // execute and commit the query
         update.executeUpdate();
@@ -302,7 +304,7 @@ public class MembershipDAO {
     private synchronized void insert(Membership mem, Connection conn) throws SQLException, DataException {
         // do the insert SQL statement
         PreparedStatement insert = conn.prepareStatement(
-            "INSERT INTO \"membership\" VALUES(?,?,?,?,?,?,?)");
+            "INSERT INTO \"membership\" VALUES(?,?,?,?,?,?,?,?,?)");
         insert.setString(1, mem.getId());
         insert.setString(2, mem.getCustId());
         insert.setString(3, mem.getStartDate());
@@ -310,6 +312,8 @@ public class MembershipDAO {
         insert.setString(5, mem.getCreditCard());
         insert.setString(6, mem.getCcExpiration());  
         insert.setBoolean(7, mem.getNewsletter());
+        insert.setString(8, Double.toString(mem.getBackupSize()));
+        insert.setString(9, Long.toString(mem.getBackupExpDate()));
         
         // execute and commit the query
         insert.executeUpdate();

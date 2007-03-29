@@ -149,6 +149,7 @@ public class TransactionLineDAO {
     synchronized TransactionLine readRecord(ResultSet rs, Connection conn) throws DataException, SQLException{
         TransactionLine txLn = new TransactionLine(rs.getString("id"), TransactionDAO.getInstance().read(rs.getString("transactionid")));
         txLn.setRevenueSource(new RevenueSource(rs.getString("revenueSourceID")));
+        txLn.setRsType(rs.getString("rstype"));
         txLn.setInDB(true);
         txLn.setDirty(false);
         return txLn;
@@ -285,10 +286,11 @@ public class TransactionLineDAO {
     private synchronized void insert(TransactionLine txLn, Connection conn) throws SQLException, DataException {
         // do the insert SQL statement
         PreparedStatement insert = conn.prepareStatement(
-            "INSERT INTO \"transactionline\" VALUES(?,?,?)");
+            "INSERT INTO \"transactionline\" VALUES(?,?,?,?)");
         insert.setString(1, txLn.getId());
         insert.setString(2, txLn.getRevenueSource().getId());
         insert.setString(3, txLn.getTransaction().getId());
+        insert.setString(4, txLn.getRsType());
         
         // execute and commit the query
         insert.executeUpdate();

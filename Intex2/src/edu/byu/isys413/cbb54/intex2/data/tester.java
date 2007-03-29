@@ -55,6 +55,7 @@ public class tester {
       cust1.setState("Rainbow");
       cust1.setZip("12345");
       cust1.setPhone("5555555555");
+      cust1.setEmail("jollypeople@mymonkeylovesme.com");
       CustomerDAO.getInstance().save(cust1);
       
       Customer cust2 = CustomerDAO.getInstance().create();
@@ -121,6 +122,8 @@ public class tester {
       mem1.setCcExpiration("06/07");
       mem1.setCustomer(cust1);
       mem1.setNewsletter(true);
+      mem1.setBackupSize(2);
+      mem1.setBackupExpDate(System.currentTimeMillis() + 123123);
       mem1.setInterests(null);
       MembershipDAO.getInstance().save(mem1);
       cust1.setMembership(mem1);
@@ -131,6 +134,8 @@ public class tester {
       mem2.setCreditCard("9934567890123456");
       mem2.setCcExpiration("06/07");
       mem2.setCustomer(cust2);
+      mem1.setBackupSize(2);
+      mem1.setBackupExpDate(System.currentTimeMillis() + 123123);
       mem2.setNewsletter(true);
       mem2.setInterests(null);
       MembershipDAO.getInstance().save(mem2);
