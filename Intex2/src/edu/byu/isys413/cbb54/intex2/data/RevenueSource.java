@@ -13,9 +13,8 @@ package edu.byu.isys413.cbb54.intex2.data;
  *
  * @author Cameron
  */
-public class RevenueSource {
+public abstract class RevenueSource {
     
-    private String id;
     private String type;
     private Double price;
     private int quantity;
@@ -23,8 +22,8 @@ public class RevenueSource {
     private boolean isInDB = false;
     
     /** Creates a new instance of RevenueSource */
-    public RevenueSource(String id) {
-        this.id = id;
+    public RevenueSource(){
+        
     }
     
     public double getPrice(){
@@ -34,15 +33,6 @@ public class RevenueSource {
     public void setPrice(double price){
         this.dirty = true;
         this.price = price;
-    }
-    
-    /*
-    public String getDescription(){
-        return "Canon EOS 1Ds Mark II";
-    }*/
-
-    public String getId() {
-        return id;
     }
 
     public String getType() {
