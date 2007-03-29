@@ -18,11 +18,20 @@ import java.util.TreeMap;
  */
 public class Factory {
     
-    Map<String,RevenueSourceDAO> m = new TreeMap<String,RevenueSourceDAO>();
     private static Factory instance = null;
     
-    private Factory(){
+    Map<String, RevenueSourceDAO> m = new TreeMap<String, RevenueSourceDAO>();
+        
+
     
+    
+    
+    
+    private Factory(){
+        m.put("sale", SaleDAO.getInstance());
+//        m.put("backup", BackupDAO.getInstance());
+//        m.put("print", PrintDAO.getInstance());
+//        m.put("rental", RentalDAO.getInstance());
     }
     
     public static synchronized Factory getInstance(){
@@ -32,9 +41,9 @@ public class Factory {
         return instance;
     }
     
-    public void getDAO(String type){
-        
-        
+    public RevenueSourceDAO getDAO(String type){
+        RevenueSourceDAO rsDAO = m.get(type);
+        return rsDAO;   
     }
     
 }

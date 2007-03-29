@@ -21,6 +21,19 @@ public abstract class RevenueSourceDAO {
     public RevenueSourceDAO() {
     }
     
+    private String type;
+    private Double price;
+    private int quantity;
     
+    public abstract String getType();
+    public abstract double getPrice();
+    public abstract int getQuantity();
     
+    public RevenueSource create(String type){
+        RevenueSourceDAO rsDAO = Factory.getInstance().getDAO(type);
+        RevenueSource bo = rsDAO.create();
+        System.out.println("Create");
+        return bo;
+    }
+//    Factory.getInstance().getDAO("sale").create();
 }

@@ -333,7 +333,7 @@ public class tester {
              */
       
              System.out.println("Creating a new RevenueSource");
-             RevenueSource rs = new RevenueSource("00000111760997ae0166c80a0446dd");
+             //RevenueSource rs = new RevenueSource("00000111760997ae0166c80a0446dd");
              
              /**
               *
@@ -343,11 +343,11 @@ public class tester {
              
              System.out.println("Creating a new TransactionLine");
              TransactionLine txLine1 = TransactionLineDAO.getInstance().create(tx);
-             txLine1.setRevenueSource(rs);
+             //txLine1.setRevenueSource(rs);
 
              System.out.println("Creating a new TransactionLine");
              TransactionLine txLine2 = TransactionLineDAO.getInstance().create(tx);
-             txLine2.setRevenueSource(rs);
+             //txLine2.setRevenueSource(rs);
              
              System.out.println("Adding TransactionLines to Transaction");
              List<TransactionLine> txLineList = new LinkedList<TransactionLine>();
@@ -430,7 +430,7 @@ public class tester {
              */
       
              System.out.println("Creating a new RevenueSource");
-             RevenueSource rsH = new RevenueSource("00000111760997ae0166c80a0446dd");
+             //RevenueSource rsH = new RevenueSource("00000111760997ae0166c80a0446dd");
              
              /**
               *
@@ -440,7 +440,7 @@ public class tester {
              
              System.out.println("Creating a new TransactionLine");
              TransactionLine txHLine1 = TransactionLineDAO.getInstance().create(txH);
-             txHLine1.setRevenueSource(rs);
+             //txHLine1.setRevenueSource(rs);
              
              System.out.println("Adding TransactionLines to Transaction");
              List<TransactionLine> txHLineList = new LinkedList<TransactionLine>();
@@ -520,7 +520,7 @@ public class tester {
              */
       
              System.out.println("Creating a new RevenueSource");
-             RevenueSource rsV = new RevenueSource("00000111760997ae0166c80a0446dd");
+             //RevenueSource rsV = new RevenueSource("00000111760997ae0166c80a0446dd");
              
              /**
               *
@@ -530,7 +530,7 @@ public class tester {
              
              System.out.println("Creating a new TransactionLine");
              TransactionLine txLineV = TransactionLineDAO.getInstance().create(txV);
-             txLineV.setRevenueSource(rs);
+             //txLineV.setRevenueSource(rs);
              
              System.out.println("Adding TransactionLines to Transaction");
              List<TransactionLine> txLineListV = new LinkedList<TransactionLine>();
@@ -574,13 +574,13 @@ public class tester {
       TransactionLine rtl = TransactionLineDAO.getInstance().create(rtn);
       
       System.out.println("Creating new Return RevenueSource");
-      RevenueSource rrs = new RevenueSource("9874928374982374");
-      rrs.setType("return");
+      //RevenueSource rrs = new RevenueSource("9874928374982374");
+      //rrs.setType("return");
       double origPrice = -orl.getRevenueSource().getPrice();
-      rrs.setPrice(origPrice);
+      //rrs.setPrice(origPrice);
       
       System.out.println("Applying return RevenueSource to return TransactionLine");
-      rtl.setRevenueSource(rrs);
+      //rtl.setRevenueSource(rrs);
       
       System.out.println("Applying the TransactionLine to the Transaction");
       List<TransactionLine> txLineListR = new LinkedList<TransactionLine>();
@@ -623,6 +623,14 @@ public class tester {
       SimpleDateFormat fmt = new SimpleDateFormat("dd-MMM-yy", Locale.US); 
       System.out.println(fmt.format(System.currentTimeMillis()) + " "); 
 
+      
+      /**
+       *
+       *    TEST REVENUESOURCE FACTORY
+       *
+       */
+      
+      RevenueSource rs = Factory.getInstance().getDAO("sale").create();
 
     }catch(Exception e) {
       e.printStackTrace();
