@@ -630,7 +630,7 @@ public class tester {
        *
        */
       
-      RevenueSource rs = Factory.getInstance().getDAO("sale").create();
+     // RevenueSource rs = Factory.getInstance().getDAO("sale").create();
 
     }catch(Exception e) {
       e.printStackTrace();

@@ -29,12 +29,16 @@ public class SaleDAO extends RevenueSourceDAO {
     }
     
     public String getType(){
-        
+        return "type";
     }
-    public double getPrice(){}
-    public int getQuantity(){}
+    public double getPrice(){
+        return 0.0;
+    }
+    public int getQuantity(){
+        return 3;
+    }
     
-    public static SaleBO create(){
+    public static SaleBO create() throws Exception{
         String g = GUID.generate();
         SaleBO bo = new SaleBO(g);
         return bo;
