@@ -5,6 +5,7 @@
 DROP TABLE "customer";
 DROP TABLE "membership";
 DROP TABLE "interest";
+DROP TABLE "backupservice";
 DROP TABLE "memberinterests";
 DROP TABLE "transaction";
 DROP TABLE "payment";
@@ -38,7 +39,14 @@ create table "membership"
     "endDate" VARCHAR(30),
     "creditCard" VARCHAR(16),
     "ccExpiration" VARCHAR(10),
-    "newsletter" SMALLINT
+    "newsletter" SMALLINT,
+    "backupSize" VARCHAR(15),
+    "backupExpDate" VARCHAR(40)
+);
+
+create table "backupservice"
+(
+    "price" VARCHAR(20) not null primary key
 );
 
 create table "interest"
@@ -140,8 +148,10 @@ INSERT INTO "customer" VALUES ('00000109123b8e75a1ce5a34001000', 'Jane', 'Doe', 
 INSERT INTO "interest" VALUES ('0000011105caf55500f1fec0a80204', 'B&W Photography','The art of black and white photography');
 INSERT INTO "interest" VALUES ('0000011105caf55f007a64c0a80204','HDR Photography','HDR Photography');
 
-INSERT INTO "membership" VALUES('0000011105d7df2e0022fdc0a80204','00000109123b925d16688bc2001000','1-jul-2006','1-jul-2007','1234567890123456','06/07',1);
-INSERT INTO "membership" VALUES('0000011105d7df38006f3ec0a80204','00000109123b8e75a1ce5a33001000','1-jul-2006','never','9934567890123456','06/07',1);
+INSERT INTO "backupservice" VALUES ('.85');
+
+INSERT INTO "membership" VALUES('0000011105d7df2e0022fdc0a80204','00000109123b925d16688bc2001000','1-jul-2006','1-jul-2007','1234567890123456','06/07',1, '5', '123123124125123123');
+INSERT INTO "membership" VALUES('0000011105d7df38006f3ec0a80204','00000109123b8e75a1ce5a33001000','1-jul-2006','never','9934567890123456','06/07',1, '2.5', '1231231231231241231241');
 
 INSERT INTO "memberinterests" VALUES('00000109123b925d16688bc2001000','0000011105caf55500f1fec0a80204');
 
