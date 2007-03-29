@@ -29,7 +29,8 @@ create table "customer"
     "city" VARCHAR(40),
     "state" VARCHAR(40),
     "zip" VARCHAR(10),
-    "phone" VARCHAR(15)
+    "phone" VARCHAR(15),
+    "email" VARCHAR(40)
 );
 
 create table "membership"
@@ -121,7 +122,8 @@ create table "transactionline"
 (
     "id" varchar(30) not null primary key,
     "revenuesourceid" varchar(30),
-    "transactionid" varchar(30)
+    "transactionid" varchar(30),
+    "rstyle" varchar(30)
 );
  
 create table "coupon"
@@ -156,10 +158,10 @@ create table "serviceRepair"
     "price" varchar(30)
 );
 
-INSERT INTO "customer" VALUES ('00000109123b9144eb018b64001000', 'Cameron', 'Burgon', '851 Wymount Terrace', '', 'Provo', 'Utah', '84602', '8013786198');
-INSERT INTO "customer" VALUES ('00000109123b925d16688bc2001000', 'Jamie', 'Burgon', '851 Wymount Terrace', '', 'Provo', 'Utah', '84604', '8013786189');
-INSERT INTO "customer" VALUES ('00000109123b8e75a1ce5a33001000', 'John', 'Doe', '123 Somewhere', '', 'Nowhere', 'Nevada', '87839', '3418394854');
-INSERT INTO "customer" VALUES ('00000109123b8e75a1ce5a34001000', 'Jane', 'Doe', '123 Somewhere', '', 'Nowhere', 'Nevada', '87839', '3418394854');
+INSERT INTO "customer" VALUES ('00000109123b9144eb018b64001000', 'Cameron', 'Burgon', '851 Wymount Terrace', '', 'Provo', 'Utah', '84602', '8013786198', 'wherever@sd.com');
+INSERT INTO "customer" VALUES ('00000109123b925d16688bc2001000', 'Jamie', 'Burgon', '851 Wymount Terrace', '', 'Provo', 'Utah', '84604', '8013786189', 'wherever@sd.com');
+INSERT INTO "customer" VALUES ('00000109123b8e75a1ce5a33001000', 'John', 'Doe', '123 Somewhere', '', 'Nowhere', 'Nevada', '87839', '3418394854', 'wherever@sd.com');
+INSERT INTO "customer" VALUES ('00000109123b8e75a1ce5a34001000', 'Jane', 'Doe', '123 Somewhere', '', 'Nowhere', 'Nevada', '87839', '3418394854', 'wherever@sd.com');
 
 INSERT INTO "interest" VALUES ('0000011105caf55500f1fec0a80204', 'B&W Photography','The art of black and white photography');
 INSERT INTO "interest" VALUES ('0000011105caf55f007a64c0a80204','HDR Photography','HDR Photography');
@@ -171,7 +173,7 @@ INSERT INTO "membership" VALUES('0000011105d7df38006f3ec0a80204','00000109123b8e
 
 INSERT INTO "memberinterests" VALUES('00000109123b925d16688bc2001000','0000011105caf55500f1fec0a80204');
 
-INSERT INTO "transactionline" VALUES('00000111728454ec00e60e0a500442','000001117284553c0014ad0a500442','000001117284553c0014af0a500442');
+INSERT INTO "transactionline" VALUES('00000111728454ec00e60e0a500442','000001117284553c0014ad0a500442','000001117284553c0014af0a500442', 'backup');
 
 INSERT INTO "transaction" VALUES('000001117284553c0014af0a500442','','complete','00000109123b9144eb018b64001000','000001117284553c0014b10a500442','000001117284553c0014b20a500442','');
 

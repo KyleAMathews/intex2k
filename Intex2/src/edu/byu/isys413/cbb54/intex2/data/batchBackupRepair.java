@@ -17,15 +17,38 @@ public class batchBackupRepair {
     
     /** Creates a new instance of batchBackupRepair */
     public batchBackupRepair() {
-        
+    }
+    public void batch() {
         Connection conn = null;
+        List<String> repairEmails = new List<String>();
+        
         try {
             // retrieve a database connection from the pool
             conn = ConnectionPool.getInstance().get();
             
             // select repair transactions which are 30 days old and send email
-            PreparedStatement ps = conn.prepareStatement("SELECT * FROM ");
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM \"backupRepair\" WHERE \"dateEnded\" <= ?");
+            ps.setString(1, (System.currentTimeMillis() - (30*24*60*60*1000))); //subtract num of miliseconds in 30 days from current time
+            ResultSet rs = ps.executeQuery();
             
+            for (String id : rs.getString("id")){
+                PreparedStatement txlinePS = conn.prepareStatement("SELECT * FROM \"transactionline\" WHERE \"revenuesourceid\" = ?");
+                txlinePS.setString(1, id); //subtract num of miliseconds in 30 days from current time
+                ResultSet txlineRS = ps.executeQuery();
+                
+                // select * from transaction using resultset id
+                PreparedStatement transPS = conn.prepareStatement("SELECT * FROM \"transaction\" WHERE \"id\" = ?");
+                transPS.setString(1, txlineRS.getString("transactionid"));
+                ResultSet transRS = transPS.executeQuery();
+                
+                // select * from customer using transaction id
+                PreparedStatement membPS = conn.prepareStatement("SELECT * FROM \"membership\" WHERE \"custid\" = ?");
+                memebPS.setString(1, transRS.getString("custid"));
+                ResultSet membRS = membPS.executeQuery();
+                
+                //add email of customer to list
+                repairEmails.add(membRS.getString(""))
+            }
             
             
             
