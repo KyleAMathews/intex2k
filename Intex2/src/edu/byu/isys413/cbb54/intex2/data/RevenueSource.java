@@ -18,13 +18,13 @@ public class RevenueSource {
     private String id;
     private String type;
     private Double price;
+    private int quantity;
     private boolean dirty = false;
     private boolean isInDB = false;
     
     /** Creates a new instance of RevenueSource */
     public RevenueSource(String id) {
         this.id = id;
-        this.price = 2.5;
     }
     
     public double getPrice(){
@@ -36,9 +36,10 @@ public class RevenueSource {
         this.price = price;
     }
     
+    /*
     public String getDescription(){
         return "Canon EOS 1Ds Mark II";
-    }
+    }*/
 
     public String getId() {
         return id;
@@ -67,6 +68,15 @@ public class RevenueSource {
 
     public void seInDB(boolean isInDB) {
         this.isInDB = isInDB;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+        this.dirty = true;
     }
     
 }
