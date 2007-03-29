@@ -14,7 +14,8 @@ DROP TABLE "store";
 DROP TABLE "transactionline";
 DROP TABLE "coupon";
 DROP TABLE "revenuesource";
-
+DROP TABLE "backup";
+DROP TABLE "serviceRepair";
 
 
 
@@ -135,10 +136,25 @@ create table "revenuesource"
     "type" varchar(80)
 );
 
+create table "backup"
+(
+    "id" varchar(30) not null primary key,
+    "size" varchar(20),
+    "lengthofbackup" varchar(35),
+    "price" varchar(10)
+);
 
-
-
-
+create table "serviceRepair"
+(
+    "id" varchar(30) not null primary key,
+    "dateStarted" varchar(30),
+    "dateEnded" varchar(30),
+    "description" varchar(150),
+    "laborHours" varchar(25),
+    "employeeID" varchar(30),
+    "datePickedUp" varchar(30),
+    "price" varchar(30)
+);
 
 INSERT INTO "customer" VALUES ('00000109123b9144eb018b64001000', 'Cameron', 'Burgon', '851 Wymount Terrace', '', 'Provo', 'Utah', '84602', '8013786198');
 INSERT INTO "customer" VALUES ('00000109123b925d16688bc2001000', 'Jamie', 'Burgon', '851 Wymount Terrace', '', 'Provo', 'Utah', '84604', '8013786189');
@@ -169,3 +185,7 @@ INSERT INTO "store" VALUES('000001117284553c0014b20a500442','Provo Center','123 
 INSERT INTO "coupon" VALUES('000001117284553c0014b40a500442',2.00);
 
 INSERT INTO "revenuesource" VALUES('000001117284553c0014b50a500442','Sale');
+
+INSERT INTO "backup" VALUES('1234', '1', '100', '.89');
+
+INSERT INTO "serviceRepair" VALUES('1234', '123145124314', '124125123123', 'What a mess it was fixing that guys widget -- a nightmare', '10', '2342352342354234', '12412512312312', '151.21'); 
