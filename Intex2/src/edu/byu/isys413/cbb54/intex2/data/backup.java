@@ -13,13 +13,30 @@ package edu.byu.isys413.cbb54.intex2.data;
  *
  * @author kyle
  */
-public class backup {
+public class backup extends RevenueSource {
     
     private double size;
     private double lengthOfBackup;
     
     /** Creates a new instance of backup */
-    public backup() {
+    public backup(String id) {
+        this.id = id;
+    }
+
+    public double getSize() {
+        return size;
+    }
+
+    public void setSize(double size) {
+        this.size = size;
+    }
+
+    public double getLengthOfBackup() {
+        return lengthOfBackup;
+    }
+
+    public void setLengthOfBackup(double lengthOfBackup) {
+        this.lengthOfBackup = lengthOfBackup;
     }
     
 }

@@ -24,20 +24,17 @@ public abstract class RSDAO {
     ///////////////////////////////////////////
     /// Create
     
-    public RevenueSource create(String id){
-        RevenueSource rs = null;
-        return rs;
-    }
+    abstract RevenueSource create(String sku);
     
     ///////////////////////////////////////////
     /// Read
     
-    public RevenueSource read (String id) {
+    public RevenueSource read (String sku) {
         RevenueSource rs = null;
         return rs;
     }
     
-    public RevenueSource read (String id, Connection conn){
+    public RevenueSource read (String sku, Connection conn){
         RevenueSource rs = null;
         return rs;
     }
@@ -45,11 +42,11 @@ public abstract class RSDAO {
     ///////////////////////////////////////////
     /// Save
     
-    public void save(RevenueSource rsbo) {
+    public vosku save(RevenueSource rsbo) {
         
     }
     
-    public void save(RevenueSource rsbo, Connection conn){
+    public vosku save(RevenueSource rsbo, Connection conn){
         
     }
             

@@ -40,7 +40,7 @@ public class RepairDAO extends RSDAO{
     ///////////////////////////////////////////
     /// Create
     
-    public RevenueSource create(String id){
+    public RevenueSource create(String sku){
         RevenueSource rs = null;
         return rs;
     }
@@ -48,12 +48,12 @@ public class RepairDAO extends RSDAO{
     ///////////////////////////////////////////
     /// Read
     
-    public RevenueSource read (String id) {
+    public RevenueSource read (String sku) {
         RevenueSource rs = null;
         return rs;
     }
     
-    public RevenueSource read (String id, Connection conn){
+    public RevenueSource read (String sku, Connection conn){
         RevenueSource rs = null;
         return rs;
     }
@@ -61,11 +61,11 @@ public class RepairDAO extends RSDAO{
     ///////////////////////////////////////////
     /// Save
     
-    public void save(RevenueSource rsbo) {
+    public vosku save(RevenueSource rsbo) {
         
     }
     
-    public void save(RevenueSource rsbo, Connection conn){
+    public vosku save(RevenueSource rsbo, Connection conn){
         
     }
             

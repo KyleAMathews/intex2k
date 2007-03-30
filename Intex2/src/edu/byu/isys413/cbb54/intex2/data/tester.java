@@ -309,7 +309,7 @@ public class tester {
       
       System.out.println("New session store: " + session.getStore().getName() + " \nNew Session Employee: " + session.getEmployee().getFname() + " " + session.getEmployee().getLname());
       
-      
+
       /**
        *
        * TESTING THE TRANSACTION
@@ -326,15 +326,7 @@ public class tester {
       tx.setStatus("pending");
       tx.setType("Sale");
       
-            /**
-             *
-             * TESTING REVENUESOURCE
-             *
-             */
-      
-             System.out.println("Creating a new RevenueSource");
-             //RevenueSource rs = new RevenueSource("00000111760997ae0166c80a0446dd");
-             
+           
              /**
               *
               * TESTING TRANSACTIONLINE
@@ -342,22 +334,27 @@ public class tester {
               */
              
              System.out.println("Creating a new TransactionLine");
-             TransactionLine txLine1 = TransactionLineDAO.getInstance().create(tx);
-             //txLine1.setRevenueSource(rs);
-
+             TransactionLine txLine1 = TransactionLineDAO.getInstance().create(tx, "ba");
+             
              System.out.println("Creating a new TransactionLine");
-             TransactionLine txLine2 = TransactionLineDAO.getInstance().create(tx);
-             //txLine2.setRevenueSource(rs);
+             TransactionLine txLine2 = TransactionLineDAO.getInstance().create(tx, "po");
              
              System.out.println("Adding TransactionLines to Transaction");
              List<TransactionLine> txLineList = new LinkedList<TransactionLine>();
-             
+             System.out.println(txLine1.getRevenueSource().getType() + " " + txLine2.getRevenueSource().getType());
              txLineList.add(txLine1);
              txLineList.add(txLine2);
              
              tx.setTxLines(txLineList);
 
-       
+             /**
+             *
+             * TESTING REVENUESOURCE
+             *
+             */
+             
+             
+             
              /**
               *
               * TESTING COUPON

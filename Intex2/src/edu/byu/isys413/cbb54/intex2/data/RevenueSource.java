@@ -15,16 +15,11 @@ package edu.byu.isys413.cbb54.intex2.data;
  */
 public abstract class RevenueSource {
     
-    private String id;
-    private String type;
-    private Double price;
+    String id;
+    String type;
+    Double price;
     boolean dirty = false;
-    private boolean isInDB = false;
-    
-    /** Creates a new instance of RevenueSource */
-    public RevenueSource(){
-        
-    }
+    boolean isInDB = false;
     
     public double getPrice(){
         return price;

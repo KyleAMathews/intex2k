@@ -46,10 +46,11 @@ public class TransactionLineDAO {
      * a connection to create BOs.  We run the insert statement
      * later, when it get's saved for the first time.
      */
-    public TransactionLine create(Transaction transaction) throws Exception{
+    public TransactionLine create(Transaction transaction, String sku) throws Exception{
         String id = null;
         id = GUID.generate();
         TransactionLine txLn = new TransactionLine(id, transaction);
+        txLn.setRevenueSource(RevenueSourceDAO.getInstance().create(sku));
         Cache c = Cache.getInstance();
         c.put(txLn.getId(), txLn);
         return txLn;

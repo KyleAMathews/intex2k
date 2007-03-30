@@ -41,20 +41,21 @@ public class BackupDAO extends RSDAO{
     ///////////////////////////////////////////
     /// Create
     
-    public RevenueSource create(String id){
-        RevenueSource rs = null;
+    public RevenueSource create(String sku){
+        String id = GUID.generate();
+        RevenueSource rs = new backup(id);
         return rs;
     }
     
     ///////////////////////////////////////////
     /// Read
     
-    public RevenueSource read (String id) {
+    public RevenueSource read (String sku) {
         RevenueSource rs = null;
         return rs;
     }
     
-    public RevenueSource read (String id, Connection conn){
+    public RevenueSource read (String sku, Connection conn){
         RevenueSource rs = null;
         return rs;
     }
@@ -62,11 +63,11 @@ public class BackupDAO extends RSDAO{
     ///////////////////////////////////////////
     /// Save
     
-    public void save(RevenueSource rsbo) {
+    public vosku save(RevenueSource rsbo) {
         
     }
     
-    public void save(RevenueSource rsbo, Connection conn){
+    public vosku save(RevenueSource rsbo, Connection conn){
         
     }
             
