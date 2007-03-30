@@ -15,8 +15,24 @@ package edu.byu.isys413.cbb54.intex2.data;
  */
 public class BackupDAO {
     
-    /** Creates a new instance of BackupDAO */
-    public BackupDAO() {
+    ///////////////////////////////////////
+    ///   Singleton pattern
+    
+    private static BackupDAO instance = null;
+    
+    /** Creates a new instance of RSSFeedDAO */
+    private BackupDAO() {
+    }
+    
+    /**
+     * Singleton Pattern to allow only one instance of BackupDAO
+     * @return BackupDAO
+     */
+    public static synchronized BackupDAO getInstance() {
+        if (instance == null) {
+            instance = new BackupDAO();
+        }
+        return instance;
     }
     
 }

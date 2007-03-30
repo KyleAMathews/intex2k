@@ -15,8 +15,24 @@ package edu.byu.isys413.cbb54.intex2.data;
  */
 public class PrintOrderDAO {
     
-    /** Creates a new instance of PrintOrderDAO */
-    public PrintOrderDAO() {
+    ///////////////////////////////////////
+    ///   Singleton pattern
+    
+    private static PrintOrderDAO instance = null;
+    
+    /** Creates a new instance of RSSFeedDAO */
+    private PrintOrderDAO() {
+    }
+    
+    /**
+     * Singleton Pattern to allow only one instance of PrintOrderDAO
+     * @return PrintOrderDAO
+     */
+    public static synchronized PrintOrderDAO getInstance() {
+        if (instance == null) {
+            instance = new PrintOrderDAO();
+        }
+        return instance;
     }
     
 }

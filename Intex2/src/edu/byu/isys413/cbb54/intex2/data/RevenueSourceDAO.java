@@ -15,9 +15,6 @@ package edu.byu.isys413.cbb54.intex2.data;
  */
 public class RevenueSourceDAO {
     
-    RevenueSourceDAO cust = null;
-    
-    
     ///////////////////////////////////////
     ///   Singleton pattern
     

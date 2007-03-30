@@ -15,8 +15,24 @@ package edu.byu.isys413.cbb54.intex2.data;
  */
 public class RentalDAO {
     
-    /** Creates a new instance of RentalDAO */
-    public RentalDAO() {
+    ///////////////////////////////////////
+    ///   Singleton pattern
+    
+    private static RentalDAO instance = null;
+    
+    /** Creates a new instance of RSSFeedDAO */
+    private RentalDAO() {
+    }
+    
+    /**
+     * Singleton Pattern to allow only one instance of RentalDAO
+     * @return RentalDAO
+     */
+    public static synchronized RentalDAO getInstance() {
+        if (instance == null) {
+            instance = new RentalDAO();
+        }
+        return instance;
     }
     
 }
