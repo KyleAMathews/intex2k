@@ -15,10 +15,10 @@ package edu.byu.isys413.cbb54.intex2.data;
  */
 public abstract class RevenueSource {
     
+    private String id;
     private String type;
     private Double price;
-    private int quantity;
-    private boolean dirty = false;
+    boolean dirty = false;
     private boolean isInDB = false;
     
     /** Creates a new instance of RevenueSource */
@@ -56,13 +56,10 @@ public abstract class RevenueSource {
         this.isInDB = isInDB;
     }
 
-    public int getQuantity() {
-        return quantity;
-    }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-        this.dirty = true;
+
+    public String getId() {
+        return id;
     }
     
 }

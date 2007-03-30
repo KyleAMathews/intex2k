@@ -17,7 +17,7 @@ public class TransactionLine {
     
     private String id;
     private RevenueSource revenueSource;
-    private Transaction transaction;
+    private Transaction transaction; 
     private Coupon coupon;
     private String rsType;
     private boolean dirty = false;

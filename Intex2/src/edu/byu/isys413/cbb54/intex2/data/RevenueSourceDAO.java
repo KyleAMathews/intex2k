@@ -1,7 +1,7 @@
 /*
  * RevenueSourceDAO.java
  *
- * Created on March 29, 2007, 1:42 PM
+ * Created on March 30, 2007, 2:25 PM
  *
  * To change this template, choose Tools | Template Manager
  * and open the template in the editor.
@@ -11,29 +11,31 @@ package edu.byu.isys413.cbb54.intex2.data;
 
 /**
  *
- * @author tylerf
+ * @author kyle
  */
-public abstract class RevenueSourceDAO {
+public class RevenueSourceDAO {
+    
+    RevenueSourceDAO cust = null;
     
     
+    ///////////////////////////////////////
+    ///   Singleton pattern
     
-    /** Creates a new instance of RevenueSourceDAO */
-    public RevenueSourceDAO() {
+    private static RevenueSourceDAO instance = null;
+    
+    /** Creates a new instance of RSSFeedDAO */
+    private RevenueSourceDAO() {
     }
     
-    private String type;
-    private Double price;
-    private int quantity;
-    
-    public abstract String getType();
-    public abstract double getPrice();
-    public abstract int getQuantity();
-    
-    public RevenueSource create(String type){
-        RevenueSourceDAO rsDAO = Factory.getInstance().getDAO(type);
-        RevenueSource bo = null;//rsDAO.create();
-        System.out.println("Create");
-        return bo;
+    /**
+     * Singleton Pattern to allow only one instance of RevenueSourceDAO
+     * @return RevenueSourceDAO
+     */
+    public static synchronized RevenueSourceDAO getInstance() {
+        if (instance == null) {
+            instance = new RevenueSourceDAO();
+        }
+        return instance;
     }
-//    Factory.getInstance().getDAO("sale").create();
+    
 }

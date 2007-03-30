@@ -141,9 +141,9 @@ create table "revenuesource"
 create table "backup"
 (
     "id" varchar(30) not null primary key,
-    "size" varchar(20),
-    "lengthofbackup" varchar(35),
-    "price" varchar(10)
+    "size" double,
+    "lengthofbackup" double,
+    "price" double
 );
 
 create table "serviceRepair"

@@ -15,13 +15,20 @@ package edu.byu.isys413.cbb54.intex2.data;
  */
 public class SaleBO extends RevenueSource {
     
-    private String id;
     
+    private int quantity;
     /**
      * Create new instance of SaleBO
      * @param id String
      */
-    public SaleBO(String id){
-        this.id = id;
+    
+    
+    public int getQuantity() {
+        return quantity;
+    }
+    
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+        this.dirty = true;
     }
 }
