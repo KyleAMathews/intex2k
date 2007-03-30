@@ -1,7 +1,7 @@
 /*
- * PrintOrderDAO.java
+ * RSDAO.java
  *
- * Created on March 30, 2007, 2:26 PM
+ * Created on March 30, 2007, 3:50 PM
  *
  * To change this template, choose Tools | Template Manager
  * and open the template in the editor.
@@ -15,26 +15,10 @@ import java.sql.Connection;
  *
  * @author kyle
  */
-public class PrintOrderDAO extends RSDAO{
+public abstract class RSDAO {
     
-    ///////////////////////////////////////
-    ///   Singleton pattern
-    
-    private static PrintOrderDAO instance = null;
-    
-    /** Creates a new instance of RSSFeedDAO */
-    private PrintOrderDAO() {
-    }
-    
-    /**
-     * Singleton Pattern to allow only one instance of PrintOrderDAO
-     * @return PrintOrderDAO
-     */
-    public static synchronized PrintOrderDAO getInstance() {
-        if (instance == null) {
-            instance = new PrintOrderDAO();
-        }
-        return instance;
+    /** Creates a new instance of RSDAO */
+    public RSDAO() {
     }
     
     ///////////////////////////////////////////
@@ -69,11 +53,7 @@ public class PrintOrderDAO extends RSDAO{
         
     }
             
-    //////////////////////////////////////////
-    /// delete
     
-    // for business reasons we're not supporting deleting
     
     
 }
-

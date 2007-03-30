@@ -9,11 +9,13 @@
 
 package edu.byu.isys413.cbb54.intex2.data;
 
+import java.sql.Connection;
+
 /**
  *
  * @author kyle
  */
-public class BackupDAO {
+public class BackupDAO extends RSDAO{
     
     ///////////////////////////////////////
     ///   Singleton pattern
@@ -34,5 +36,44 @@ public class BackupDAO {
         }
         return instance;
     }
+    
+    
+    ///////////////////////////////////////////
+    /// Create
+    
+    public RevenueSource create(String id){
+        RevenueSource rs = null;
+        return rs;
+    }
+    
+    ///////////////////////////////////////////
+    /// Read
+    
+    public RevenueSource read (String id) {
+        RevenueSource rs = null;
+        return rs;
+    }
+    
+    public RevenueSource read (String id, Connection conn){
+        RevenueSource rs = null;
+        return rs;
+    }
+    
+    ///////////////////////////////////////////
+    /// Save
+    
+    public void save(RevenueSource rsbo) {
+        
+    }
+    
+    public void save(RevenueSource rsbo, Connection conn){
+        
+    }
+            
+    //////////////////////////////////////////
+    /// delete
+    
+    // for business reasons we're not supporting deleting
+    
     
 }

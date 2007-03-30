@@ -9,38 +9,71 @@
 
 package edu.byu.isys413.cbb54.intex2.data;
 
+import java.sql.Connection;
+
 /**
  *
  * @author Cameron
  */
-public class SaleDAO extends RevenueSourceDAO {
+public class SaleDAO extends RSDAO {
+    
+    ///////////////////////////////////////
+    ///   Singleton pattern
     
     private static SaleDAO instance = null;
     
-    /** Creates a new instance of SaleDAO */
+    /** Creates a new instance of RSSFeedDAO */
     private SaleDAO() {
     }
     
-    public static synchronized SaleDAO getInstance(){
-        if(instance == null){
+    /**
+     * Singleton Pattern to allow only one instance of SaleDAO
+     * @return SaleDAO
+     */
+    public static synchronized SaleDAO getInstance() {
+        if (instance == null) {
             instance = new SaleDAO();
         }
         return instance;
     }
     
-    public String getType(){
-        return "type";
-    }
-    public double getPrice(){
-        return 0.0;
-    }
-    public int getQuantity(){
-        return 3;
+    ///////////////////////////////////////////
+    /// Create
+    
+    public RevenueSource create(String id){
+        RevenueSource rs = null;
+        return rs;
     }
     
-    public static SaleBO create() throws Exception{
-        String g = GUID.generate();
-        SaleBO bo = new SaleBO(g);
-        return bo;
+    ///////////////////////////////////////////
+    /// Read
+    
+    public RevenueSource read(String id) {
+        RevenueSource rs = null;
+        return rs;
     }
+    
+    public RevenueSource read(String id, Connection conn){
+        RevenueSource rs = null;
+        return rs;
+    }
+    
+    ///////////////////////////////////////////
+    /// Save
+    
+    public void save(RevenueSource rsbo) {
+        
+    }
+    
+    public void save(RevenueSource rsbo, Connection conn){
+        
+    }
+    
+    //////////////////////////////////////////
+    /// delete
+    
+    // for business reasons we're not supporting deleting
+    
+    
 }
+
