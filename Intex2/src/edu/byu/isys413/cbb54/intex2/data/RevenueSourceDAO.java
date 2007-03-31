@@ -47,55 +47,61 @@ public class RevenueSourceDAO {
     // KEY (ba = backup | rn = rental | us = used | rp = repair | po = printOrder)
     ///////////////////////////////////////////
     //// Create
-    public RevenueSource create(String sku){
-        // check first digit if backup/rental/used/repair/printOrder
-        String type = String.valueOf(sku.charAt(0)) + String.valueOf(sku.charAt(1));
-        
-        // grab DAO from map
-        RSDAO dao = DAOmap.get(type);
-        if (dao == null){
-            dao = SaleDAO.getInstance();
-        }
-        
-        // pass in sku
-        RevenueSource rs = dao.create(sku);
-        
-        // return
-        return rs;
+    public RevenueSource create(String sku) throws DataException{
+        try{
+            // check first digit if backup/rental/used/repair/printOrder
+            String type = String.valueOf(sku.charAt(0)) + String.valueOf(sku.charAt(1));
+
+            // grab DAO from map
+            RSDAO dao = DAOmap.get(type);
+            if (dao == null){
+                dao = SaleDAO.getInstance();
+            }
+
+            // pass in sku
+            RevenueSource rs = dao.create();
+
+            // return
+            return rs;
+        }catch (DataException de){
+            throw new DataException("Could not create new Revenue Source", de);
+        }catch (Exception e){
+            throw new DataException("Could not create new Revenue Source.", e);
+        }        
     }
     
     
-    ///////////////////////////////////////////
-    /// Read
-    
-    public RevenueSource read(String id){
-        // read from  RevenueSource database with id
-        // grab DAO from map
-        // send in id to DAO
-        // set price on returned object
-        // return
-    }
-    
-    
-    ///////////////////////////////////////////
-    /// Save
-    
-    public void save(RevenueSource rs){
-        // revenuesource saves price/type/id
-        // gets DAO for type
-        // sends in rs to DAO
-        // returns
-        
-    }
-    
-    
-    ///////////////////////////////////////////
-    /// Delete
-    
-    // for business reasons we are not deleteing any revenue sources
-    
-    ///////////////////////////////////////////
-    /// DAO Map
-    
-    
+//    ///////////////////////////////////////////
+//    /// Read
+//    
+//    public RevenueSource read(String id){
+//        // read from  RevenueSource database with id
+//        // grab DAO from map
+//        // send in id to DAO
+//        // set price on returned object
+//        // return
+//    }
+//    
+//    
+//    ///////////////////////////////////////////
+//    /// Save
+//    
+//    public void save(RevenueSource rs){
+//        // revenuesource saves price/type/id
+//        // gets DAO for type
+//        // sends in rs to DAO
+//        // returns
+//        
+//    }
+//    
+//    
+//    ///////////////////////////////////////////
+//    /// Delete
+//    
+//    // for business reasons we are not deleteing any revenue sources
+//    
+//    ///////////////////////////////////////////
+//    /// DAO Map
+//    
+//    
 }

@@ -16,7 +16,7 @@ package edu.byu.isys413.cbb54.intex2.data;
 public class printOrder {
     
     private PhotoSet photoSet;
-    private PrintFormat printFormat;
+//    private PrintFormat printFormat;
     private int quantity;
     
     /** Creates a new instance of printOrder */

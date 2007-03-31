@@ -40,7 +40,7 @@ public class PrintOrderDAO extends RSDAO{
     ///////////////////////////////////////////
     /// Create
     
-    public RevenueSource create(String id){
+    public RevenueSource create(){
         RevenueSource rs = null;
         return rs;
     }

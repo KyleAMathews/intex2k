@@ -24,7 +24,7 @@ public abstract class RSDAO {
     ///////////////////////////////////////////
     /// Create
     
-    abstract RevenueSource create(String sku);
+    abstract RevenueSource create() throws Exception;
     
     ///////////////////////////////////////////
     /// Read
@@ -42,11 +42,11 @@ public abstract class RSDAO {
     ///////////////////////////////////////////
     /// Save
     
-    public vosku save(RevenueSource rsbo) {
+    public void save(RevenueSource rsbo) {
         
     }
     
-    public vosku save(RevenueSource rsbo, Connection conn){
+    public void save(RevenueSource rsbo, Connection conn){
         
     }
             

@@ -149,7 +149,7 @@ public class TransactionLineDAO {
     
     synchronized TransactionLine readRecord(ResultSet rs, Connection conn) throws DataException, SQLException{
         TransactionLine txLn = new TransactionLine(rs.getString("id"), TransactionDAO.getInstance().read(rs.getString("transactionid")));
-        txLn.setRevenueSource(new RevenueSource(rs.getString("revenueSourceID")));
+//        txLn.setRevenueSource(new RevenueSource(rs.getString("revenueSourceID")));
         txLn.setRsType(rs.getString("rstype"));
         txLn.setInDB(true);
         txLn.setDirty(false);
@@ -338,7 +338,7 @@ public class TransactionLineDAO {
                 TransactionLine txLn = new TransactionLine(rs.getString("id"),transaction);
                 
                 // This will need to be update when RevenueSource is complete
-                txLn.setRevenueSource(new RevenueSource(rs.getString("revenueSourceID")));
+//                txLn.setRevenueSource(new RevenueSource(rs.getString("revenueSourceID")));
                 transLines.add(txLn);
             }
 

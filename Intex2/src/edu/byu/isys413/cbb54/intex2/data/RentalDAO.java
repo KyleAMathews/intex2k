@@ -61,11 +61,11 @@ public class RentalDAO extends RSDAO{
     ///////////////////////////////////////////
     /// Save
     
-    public vosku save(RevenueSource rsbo) {
+    public void save(RevenueSource rsbo) {
         
     }
     
-    public vosku save(RevenueSource rsbo, Connection conn){
+    public void save(RevenueSource rsbo, Connection conn){
         
     }
             
