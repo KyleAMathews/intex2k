@@ -188,6 +188,6 @@ INSERT INTO "coupon" VALUES('000001117284553c0014b40a500442',2.00);
 
 INSERT INTO "revenuesource" VALUES('000001117284553c0014b50a500442','Sale');
 
-INSERT INTO "backup" VALUES('1234', '1', '100', '.89');
+INSERT INTO "backup" VALUES('1234', 1, 100, 0.89);
 
 INSERT INTO "serviceRepair" VALUES('1234', '123145124314', '124125123123', 'What a mess it was fixing that guys widget -- a nightmare', '10', '2342352342354234', '12412512312312', '151.21'); 
