@@ -40,7 +40,7 @@ public class RentalDAO extends RSDAO{
     ///////////////////////////////////////////
     /// Create
     
-    public RevenueSource create(String sku){
+    RevenueSource create() throws Exception {
         RevenueSource rs = null;
         return rs;
     }
@@ -73,6 +73,7 @@ public class RentalDAO extends RSDAO{
     /// delete
     
     // for business reasons we're not supporting deleting
+
     
     
 }

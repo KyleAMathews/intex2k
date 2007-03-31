@@ -40,7 +40,7 @@ public class SaleDAO extends RSDAO {
     ///////////////////////////////////////////
     /// Create
     
-    public RevenueSource create(String sku){
+    public RevenueSource create(){
         RevenueSource rs = null;
         return rs;
     }

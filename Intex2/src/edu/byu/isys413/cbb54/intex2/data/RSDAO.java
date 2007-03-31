@@ -29,26 +29,16 @@ public abstract class RSDAO {
     ///////////////////////////////////////////
     /// Read
     
-    public RevenueSource read (String sku) {
-        RevenueSource rs = null;
-        return rs;
-    }
+    abstract RevenueSource read (String sku);
     
-    public RevenueSource read (String sku, Connection conn){
-        RevenueSource rs = null;
-        return rs;
-    }
+    abstract RevenueSource read (String sku, Connection conn);
     
     ///////////////////////////////////////////
     /// Save
     
-    public void save(RevenueSource rsbo) {
-        
-    }
+    abstract void save(RevenueSource rsbo);
     
-    public void save(RevenueSource rsbo, Connection conn){
-        
-    }
+    abstract void save(RevenueSource rsbo, Connection conn);
             
     
     
