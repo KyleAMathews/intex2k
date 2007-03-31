@@ -21,7 +21,9 @@ public class SaleBO extends RevenueSource {
      * Create new instance of SaleBO
      * @param id String
      */
-    
+    public SaleBO(String id){
+        this.id = id;
+    }
     
     public int getQuantity() {
         return quantity;

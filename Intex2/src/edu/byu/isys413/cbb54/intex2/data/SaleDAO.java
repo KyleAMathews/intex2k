@@ -40,8 +40,10 @@ public class SaleDAO extends RSDAO {
     ///////////////////////////////////////////
     /// Create
     
-    public RevenueSource create(){
-        RevenueSource rs = null;
+    public RevenueSource create() throws Exception{
+        String id = GUID.generate();
+        RevenueSource rs = new SaleBO(id);
+        System.out.println("I've created a SaleBO  :  ID: " + rs.getId());
         return rs;
     }
     

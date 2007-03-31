@@ -40,8 +40,10 @@ public class RepairDAO extends RSDAO{
     ///////////////////////////////////////////
     /// Create
     
-     RevenueSource create() throws Exception {
-        RevenueSource rs = null;
+     public RevenueSource create() throws Exception{
+        String id = GUID.generate();
+        RevenueSource rs = new repair(id);
+        System.out.println("I've created a RepairBO  :  ID: " + rs.getId());
         return rs;
     }
     

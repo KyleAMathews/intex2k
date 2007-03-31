@@ -13,14 +13,15 @@ package edu.byu.isys413.cbb54.intex2.data;
  *
  * @author kyle
  */
-public class rental {
+public class rental extends RevenueSource {
     
     private long dateOut;
     private long dateDue;
     
     
     /** Creates a new instance of rental */
-    public rental() {
+    public rental(String id) {
+        this.id = id;
     }
 
     public long getDateOut() {
@@ -28,6 +29,7 @@ public class rental {
     }
 
     public void setDateOut(long dateOut) {
+        this.dirty = true;
         this.dateOut = dateOut;
     }
 
@@ -36,6 +38,7 @@ public class rental {
     }
 
     public void setDateDue(long dateDue) {
+        this.dirty = true;
         this.dateDue = dateDue;
     }
     

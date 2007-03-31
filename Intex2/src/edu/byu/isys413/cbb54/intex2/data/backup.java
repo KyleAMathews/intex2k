@@ -22,7 +22,7 @@ public class backup extends RevenueSource {
     public backup(String id) {
         this.id = id;
     }
-
+    
     public double getSize() {
         return size;
     }

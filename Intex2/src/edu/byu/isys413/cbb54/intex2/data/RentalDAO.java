@@ -40,8 +40,10 @@ public class RentalDAO extends RSDAO{
     ///////////////////////////////////////////
     /// Create
     
-    RevenueSource create() throws Exception {
-        RevenueSource rs = null;
+    public RevenueSource create() throws Exception{
+        String id = GUID.generate();
+        RevenueSource rs = new rental(id);
+        System.out.println("I've created a RentalBO  :  ID: " + rs.getId());
         return rs;
     }
     

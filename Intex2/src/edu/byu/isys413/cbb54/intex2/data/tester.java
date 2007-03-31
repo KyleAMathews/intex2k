@@ -333,15 +333,29 @@ public class tester {
               *
               */
              
-             System.out.println("Creating a new TransactionLine");
+             System.out.println("Creating a new backup TransactionLine");
              TransactionLine txLine1 = TransactionLineDAO.getInstance().create(tx, "ba");
              
-             System.out.println("Creating a new TransactionLine");
+             System.out.println("Creating a new Photo Order TransactionLine");
              TransactionLine txLine2 = TransactionLineDAO.getInstance().create(tx, "po");
+             
+             System.out.println("Creating a new Rental TransactionLine");
+             TransactionLine txLine3 = TransactionLineDAO.getInstance().create(tx, "rn");
+             
+             System.out.println("Creating a new Used TransactionLine");
+             TransactionLine txLine4 = TransactionLineDAO.getInstance().create(tx, "us");
+             
+             System.out.println("Creating a new Repair TransactionLine");
+             TransactionLine txLine5 = TransactionLineDAO.getInstance().create(tx, "rp");
+             
+             System.out.println("Creating a new Sale TransactionLine");
+             TransactionLine txLine6 = TransactionLineDAO.getInstance().create(tx, "34820842342");
              
              System.out.println("Adding TransactionLines to Transaction");
              List<TransactionLine> txLineList = new LinkedList<TransactionLine>();
-             System.out.println(txLine1.getRevenueSource().getType() + " " + txLine2.getRevenueSource().getType());
+             System.out.println("BackupType: " + txLine1.getRevenueSource().getType() + " PhotoOrder Type: " + txLine2.getRevenueSource().getType() + " Rental Type: " +
+                   txLine3.getRevenueSource().getType() + " Used Type: " + txLine4.getRevenueSource().getType() + " Repair Type: " + txLine5.getRevenueSource().getType()
+                   + " Sale Type: " + txLine6.getRevenueSource().getType());
              txLineList.add(txLine1);
              txLineList.add(txLine2);
              

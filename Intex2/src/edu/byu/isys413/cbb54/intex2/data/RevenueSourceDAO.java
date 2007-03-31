@@ -44,23 +44,29 @@ public class RevenueSourceDAO {
         }
         return instance;
     }
-    // KEY (ba = backup | rn = rental | us = used | rp = repair | po = printOrder)
+    // KEY (ba = backup | rn = rental | us = used | rp = repair | po = printOrder | sale = Sale)
     ///////////////////////////////////////////
     //// Create
     public RevenueSource create(String sku) throws DataException{
         try{
             // check first digit if backup/rental/used/repair/printOrder
             String type = String.valueOf(sku.charAt(0)) + String.valueOf(sku.charAt(1));
+            boolean isSale = false;
 
             // grab DAO from map
             RSDAO dao = DAOmap.get(type);
             if (dao == null){
                 dao = SaleDAO.getInstance();
+                isSale = true;
             }
 
-            // pass in sku
+            // create BO
             RevenueSource rs = dao.create();
-
+            System.out.println(rs.getId());
+            rs.setType(type);
+            if (isSale){
+                rs.setType("sale");
+            }
             // return
             return rs;
         }catch (DataException de){

@@ -40,8 +40,10 @@ public class PrintOrderDAO extends RSDAO{
     ///////////////////////////////////////////
     /// Create
     
-    public RevenueSource create(){
-        RevenueSource rs = null;
+    public RevenueSource create() throws Exception{
+        String id = GUID.generate();
+        RevenueSource rs = new backup(id);
+        System.out.println("I've created a PrintOrderBO  :  ID: " + rs.getId());
         return rs;
     }
     
