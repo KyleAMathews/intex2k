@@ -41,7 +41,7 @@ public class PrintOrderDAO extends RSDAO{
     /// Create
     
     public RevenueSource create() throws Exception{
-        String id = GUID.generate();
+        String id = GUID.generate("po");
         RevenueSource rs = new backup(id);
         System.out.println("I've created a PrintOrderBO  :  ID: " + rs.getId());
         return rs;
@@ -49,11 +49,6 @@ public class PrintOrderDAO extends RSDAO{
     
     ///////////////////////////////////////////
     /// Read
-    
-    public RevenueSource read (String id) {
-        RevenueSource rs = null;
-        return rs;
-    }
     
     public RevenueSource read (String id, Connection conn){
         RevenueSource rs = null;
@@ -63,13 +58,18 @@ public class PrintOrderDAO extends RSDAO{
     ///////////////////////////////////////////
     /// Save
     
-    public void save(RevenueSource rsbo) {
+    public void save(RevenueSource rsbo, Connection conn) throws Exception{
+        
+    }
+            
+    public void insert(RevenueSource rsbo, Connection conn) throws Exception{
         
     }
     
-    public void save(RevenueSource rsbo, Connection conn){
+    public void update(RevenueSource rsbo, Connection conn) throws Exception{
         
     }
+    
             
     //////////////////////////////////////////
     /// delete

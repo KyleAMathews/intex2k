@@ -39,6 +39,14 @@ public class GUID {
      * @return String(guid)
      * @throws java.lang.Exception Thrown when there is an error generating the guid
      */
+    
+    public static synchronized String generate(String rsType) throws Exception {
+        String guid = generate();
+        StringBuffer type = new StringBuffer(guid);
+        type.insert(0, rsType);
+        return type.toString();
+    }
+    
     public static synchronized String generate() throws Exception {
         
        // Initalize GUID string

@@ -29,18 +29,16 @@ public abstract class RSDAO {
     ///////////////////////////////////////////
     /// Read
     
-    abstract RevenueSource read (String sku);
-    
-    abstract RevenueSource read (String sku, Connection conn);
-    
+    abstract RevenueSource read (String sku, Connection conn) throws Exception;
+            
     ///////////////////////////////////////////
     /// Save
     
-    abstract void save(RevenueSource rsbo);
-    
-    abstract void save(RevenueSource rsbo, Connection conn);
+    abstract void save(RevenueSource rsbo, Connection conn) throws Exception;
             
+    abstract void insert(RevenueSource rsbo, Connection conn) throws Exception;
     
+    abstract void update(RevenueSource rsbo, Connection conn) throws Exception;
     
     
 }

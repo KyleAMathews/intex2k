@@ -41,7 +41,7 @@ public class RepairDAO extends RSDAO{
     /// Create
     
      public RevenueSource create() throws Exception{
-        String id = GUID.generate();
+        String id = GUID.generate("rp");
         RevenueSource rs = new repair(id);
         System.out.println("I've created a RepairBO  :  ID: " + rs.getId());
         return rs;
@@ -50,12 +50,7 @@ public class RepairDAO extends RSDAO{
     ///////////////////////////////////////////
     /// Read
     
-    public RevenueSource read (String sku) {
-        RevenueSource rs = null;
-        return rs;
-    }
-    
-    public RevenueSource read (String sku, Connection conn){
+    public RevenueSource read (String id, Connection conn){
         RevenueSource rs = null;
         return rs;
     }
@@ -63,13 +58,18 @@ public class RepairDAO extends RSDAO{
     ///////////////////////////////////////////
     /// Save
     
-    public void save(RevenueSource rsbo) {
+    public void save(RevenueSource rsbo, Connection conn) throws Exception{
+        
+    }
+            
+    public void insert(RevenueSource rsbo, Connection conn) throws Exception{
         
     }
     
-    public void save(RevenueSource rsbo, Connection conn){
+    public void update(RevenueSource rsbo, Connection conn) throws Exception{
         
     }
+    
             
     //////////////////////////////////////////
     /// delete

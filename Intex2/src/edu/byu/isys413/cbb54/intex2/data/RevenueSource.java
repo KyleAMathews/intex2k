@@ -16,7 +16,6 @@ package edu.byu.isys413.cbb54.intex2.data;
 public abstract class RevenueSource {
     
     String id;
-    String type;
     Double price;
     boolean dirty = false;
     boolean isInDB = false;
@@ -30,17 +29,12 @@ public abstract class RevenueSource {
         this.price = price;
     }
 
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.dirty = true;
-        this.type = type;
-    }
-
     public boolean isDirty() {
         return dirty;
+    }
+    
+    public void setDirty(boolean dirty){
+        this.dirty = dirty;
     }
 
     public boolean isInDB() {

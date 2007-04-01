@@ -10,6 +10,7 @@
 package edu.byu.isys413.cbb54.intex2.data;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 
 /**
  *
@@ -42,7 +43,7 @@ public class BackupDAO extends RSDAO{
     /// Create
     
     public RevenueSource create() throws Exception{
-        String id = GUID.generate();
+        String id = GUID.generate("ba");
         RevenueSource rs = new backup(id);
         System.out.println("I've created a backupBO  :  ID: " + rs.getId());
         return rs;
@@ -51,29 +52,56 @@ public class BackupDAO extends RSDAO{
     ///////////////////////////////////////////
     /// Read
     
-    public RevenueSource read (String sku) {
-        RevenueSource rs = null;
-        System.out.println("I've read a backupBO");
-        return rs;
-    }
-    
-    public RevenueSource read (String sku, Connection conn){
-        RevenueSource rs = null;
-        System.out.println("I've created a backupBO");
+    public RevenueSource read(String id, Connection conn) throws Exception{
+        id = GUID.generate("ba");
+        RevenueSource rs = new backup(id);
         return rs;
     }
     
     ///////////////////////////////////////////
     /// Save
     
-    public void save(RevenueSource rsbo) {
-        System.out.println("I've saved a backupBO");
+    public void save(RevenueSource rsbo, Connection conn) throws Exception{
+        // check the dirty flag in the object.  if it is dirty,
+        // run update or insert
+        if (rsbo.isDirty()) {
+            if (rsbo.isInDB()) {
+                // We are not supporting update
+                //update(rsbo, conn);
+            }else{
+                insert(rsbo, conn);
+            }
+            
+            // set the dirty flag to false now that we've saved it
+            rsbo.setDirty(false);
+            
+        }
     }
     
-    public void save(RevenueSource rsbo, Connection conn){
-        
+    public void insert(RevenueSource rsbo, Connection conn) throws Exception{
+        System.out.println("inserting backup");
+        backup bkup = (backup)rsbo;
+        System.out.println("backup price: " + bkup.getPrice());
+        PreparedStatement insert = conn.prepareStatement(
+                "INSERT INTO \"backup\" VALUES (?,?,?,?)");
+        insert.setString(1, bkup.getId());
+        insert.setDouble(2, bkup.getSize());
+        insert.setDouble(3, bkup.getLengthOfBackup());
+        insert.setDouble(4, bkup.getPrice());
+        insert.executeUpdate();
     }
-            
+    
+    public void update(RevenueSource rsbo, Connection conn) throws Exception{
+        backup bkup = (backup)rsbo;
+        PreparedStatement update = conn.prepareStatement(
+                "UPDATE \"backup\" SET \"size\"=?, \"lengthofbackup\" = ?, \"price\" = ? WHERE \"id\" = ?");
+        update.setDouble(1, bkup.getSize());
+        update.setDouble(2, bkup.getLengthOfBackup());
+        update.setDouble(3, bkup.getPrice());
+        update.setString(4, bkup.getId());
+        update.executeUpdate();
+    }
+    
     //////////////////////////////////////////
     /// delete
     

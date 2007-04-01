@@ -9,6 +9,8 @@
 
 package edu.byu.isys413.cbb54.intex2.data;
 
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -27,7 +29,7 @@ public class RevenueSourceDAO {
     
     /** Creates a new instance of RSSFeedDAO */
     private RevenueSourceDAO() {
-        DAOmap.put("sale", SaleDAO.getInstance());
+        DAOmap.put("sa", SaleDAO.getInstance());
         DAOmap.put("ba", BackupDAO.getInstance());
         DAOmap.put("po", PrintOrderDAO.getInstance());
         DAOmap.put("rn", RentalDAO.getInstance());
@@ -52,62 +54,146 @@ public class RevenueSourceDAO {
             // check first digit if backup/rental/used/repair/printOrder
             String type = String.valueOf(sku.charAt(0)) + String.valueOf(sku.charAt(1));
             boolean isSale = false;
-
+            
             // grab DAO from map
             RSDAO dao = DAOmap.get(type);
             if (dao == null){
                 dao = SaleDAO.getInstance();
-                isSale = true;
             }
-
+            
             // create BO
             RevenueSource rs = dao.create();
-            System.out.println(rs.getId());
-            rs.setType(type);
-            if (isSale){
-                rs.setType("sale");
-            }
+           
+            // save to cache
+            Cache c = Cache.getInstance();
+            c.put(rs.getId(), rs);
+            
             // return
             return rs;
         }catch (DataException de){
             throw new DataException("Could not create new Revenue Source", de);
         }catch (Exception e){
             throw new DataException("Could not create new Revenue Source.", e);
-        }        
+        }
     }
     
     
-//    ///////////////////////////////////////////
-//    /// Read
-//    
-//    public RevenueSource read(String id){
-//        // read from  RevenueSource database with id
-//        // grab DAO from map
-//        // send in id to DAO
-//        // set price on returned object
-//        // return
-//    }
-//    
-//    
-//    ///////////////////////////////////////////
-//    /// Save
-//    
-//    public void save(RevenueSource rs){
-//        // revenuesource saves price/type/id
-//        // gets DAO for type
-//        // sends in rs to DAO
-//        // returns
-//        
-//    }
-//    
-//    
-//    ///////////////////////////////////////////
-//    /// Delete
-//    
-//    // for business reasons we are not deleteing any revenue sources
-//    
-//    ///////////////////////////////////////////
-//    /// DAO Map
-//    
-//    
+    ///////////////////////////////////////////
+    /// Read
+    
+    public RevenueSource read(String id) throws DataException{
+        RevenueSource rs = null;
+        
+        // read from  RevenueSource database with id
+        if(Cache.getInstance().containsKey(id)){
+            rs = (RevenueSource)Cache.getInstance().get(id);
+        }else{
+            Connection conn = null;
+            try {
+                // retrieve a database connection from the pool
+                conn = ConnectionPool.getInstance().get();
+                
+                // check first digit if backup/rental/used/repair/printOrder
+                String type = String.valueOf(id.charAt(0)) + String.valueOf(id.charAt(1));
+                
+                // grab DAO from map
+                RSDAO dao = DAOmap.get(type);
+                
+                // call read with a connection on selected DAO
+                rs = dao.read(id, conn);
+                
+                // save to cache
+                Cache c = Cache.getInstance();
+                c.put(rs.getId(), rs);
+                
+                // release the connection
+                conn.commit();
+                ConnectionPool.getInstance().release(conn);
+                
+            }catch (ConnectionPoolException e){
+                throw new DataException("Could not get a connection to the database.");
+                
+            }catch (SQLException e) {
+                // rollback
+                try {
+                    conn.rollback();
+                    ConnectionPool.getInstance().release(conn);
+                }catch (ConnectionPoolException ce){
+                    throw new DataException("There was an error with the connection to the database", ce);
+                }catch (SQLException e2) {
+                    throw new DataException("Big error: could not even release the connection", e2);
+                }
+                
+                throw new DataException("Could not retrieve record for id=" + id, e);
+            }catch (Exception e){
+                throw new DataException("Caught yet another exception in the RevenueSourceDAO " + e);
+            }
+            
+        }
+        
+        // return
+        return rs;
+    }
+    
+    
+    ///////////////////////////////////////////
+    /// Save
+    
+    public void save(RevenueSource rs) throws DataException{
+      
+        String id = rs.getId();
+        Connection conn = null;
+        try {
+            // retrieve a database connection from the pool
+            conn = ConnectionPool.getInstance().get();
+            
+            // check first digit if backup/rental/used/repair/printOrder/sale
+            String type = String.valueOf(id.charAt(0)) + String.valueOf(id.charAt(1));
+            
+            // grab DAO from map
+            RSDAO dao = DAOmap.get(type);
+            System.out.println("saving rs");
+            System.out.println(id + " " + type + " " + rs.isDirty() + " " + rs.isInDB);
+            // save rs using a connection on selected DAO
+            dao.save(rs, conn);
+            System.out.println("saved rs");
+            // clean up rs
+            rs.setDirty(false);
+            
+            // touch cache
+            Cache c = Cache.getInstance();
+            c.touch(rs.getId());
+
+            // release the connection
+            conn.commit();
+            ConnectionPool.getInstance().release(conn);
+            
+        }catch (ConnectionPoolException e){
+            throw new DataException("Could not get a connection to the database.");
+            
+        }catch (SQLException e) {
+            // rollback
+            try {
+                conn.rollback();
+                ConnectionPool.getInstance().release(conn);
+            }catch (ConnectionPoolException ce){
+                throw new DataException("There was an error with the connection to the database", ce);
+            }catch (SQLException e2) {
+                throw new DataException("Big error: could not even release the connection", e2);
+            }
+            
+            throw new DataException("Could not retrieve record for id=" + id, e);
+        }catch (Exception e){
+            throw new DataException("Caught yet another exception in the RevenueSourceDAO " + e);
+        }
+        
+        return;
+    }
+    
+    
+    ///////////////////////////////////////////
+    /// Delete
+    
+    // for business reasons we are not deleteing any revenue sources
+    
 }
