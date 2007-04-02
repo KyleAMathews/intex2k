@@ -203,7 +203,8 @@ create table "conversiontype"
 (
     "id" varchar(30) not null primary key,
     "sourcetype" varchar(30),
-    "destinationtype" varchar(30)
+    "destinationtype" varchar(30),
+    "price" double
 );
 
 create table "sale"
