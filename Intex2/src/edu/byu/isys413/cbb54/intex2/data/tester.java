@@ -373,7 +373,7 @@ public class tester {
             
             txLine1.getRevenueSource().setPrice(12);
             System.out.println("Saving backupRS: "); RevenueSourceDAO.getInstance().save(txLine1.getRevenueSource());
-
+            
             /**
              *TESTING PrintOrder (includes PhotoSet, PrintFormat)
              *
@@ -388,6 +388,19 @@ public class tester {
             ps2.setDescription("Test photoset 2");
             ps2.setNumPhotos(5);
             PhotoSetDAO.getInstance().save(ps2);
+            
+            PhotoSet ps3 = PhotoSetDAO.getInstance().read(ps2.getId());
+            System.out.println("ps2==ps3 -> " + (ps2 == ps3));
+            
+            // test if all three customer objects are in the Cache
+            System.out.println("ps in Cache -> " + Cache.getInstance().containsKey(ps.getId()) );
+            System.out.println("ps2 in Cache -> " + Cache.getInstance().containsKey(ps2.getId()) );
+            System.out.println("ps3 in Cache -> " + Cache.getInstance().containsKey(ps3.getId()) );
+            
+            // test the update(save)
+            interest2.setTitle("HDR Photography");
+            InterestDAO.getInstance().save(interest2);
+            
             
             
 //             /**
