@@ -401,6 +401,39 @@ public class tester {
             ps.setDescription("HDR Photography");
             PhotoSetDAO.getInstance().save(ps);
             
+            //PRINT FORMAT
+            printFormat pf = printFormatDAO.getInstance().create();
+            pf.setSize("3x5");
+            pf.setPaperType("Glossy");
+            pf.setSourceType("Film");
+            pf.setPrice(.30);
+            printFormatDAO.getInstance().save(pf);
+            
+            printFormat pf2 = printFormatDAO.getInstance().create();
+            pf2.setSize("4x6");
+            pf2.setPaperType("matte");
+            pf2.setSourceType("Digital");
+            pf2.setPrice(.33);
+            printFormatDAO.getInstance().save(pf2);
+            
+            printFormat pf3 = printFormatDAO.getInstance().read(pf2.getId());
+            System.out.println("pf2==pf3 -> " + (pf2 == pf3));
+            
+            // test if all three customer objects are in the Cache
+            System.out.println("pf in Cache -> " + Cache.getInstance().containsKey(pf.getId()) );
+            System.out.println("pf2 in Cache -> " + Cache.getInstance().containsKey(pf2.getId()) );
+            System.out.println("pf3 in Cache -> " + Cache.getInstance().containsKey(pf3.getId()) );
+            
+            pf2.setPaperType("Other");
+            printFormatDAO.getInstance().save(pf2);
+            
+            //PRINT ORDER
+            RevenueSource po = PrintOrderDAO.getInstance().create();
+            /*
+            po.setPhotoSet(PhotoSetDAO.getInstance().read(ps.getId()));
+            po.setQuantity(4);
+            po.setPrintFormat(printFormatDAO.getInstance().read(pf.getId()));*/
+            RevenueSourceDAO.getInstance().save(po);
             
             
 //             /**

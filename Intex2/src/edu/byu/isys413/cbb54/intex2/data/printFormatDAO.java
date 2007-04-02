@@ -129,7 +129,9 @@ public class printFormatDAO{
     
     public synchronized void save(printFormat ps, Connection conn) throws SQLException, Exception {
         if (ps.getIsInDB() == true) {
-            update(ps);
+            if (ps.isDirty() == true){
+                update(ps);
+            }
         }else{
             insert(ps);
         }
@@ -137,7 +139,9 @@ public class printFormatDAO{
     
     public synchronized void save(printFormat ps) throws SQLException, Exception {
         if (ps.getIsInDB() == true) {
-            update(ps);
+            if (ps.isDirty() == true){
+                update(ps);
+            }
         }else{
             insert(ps);
         }
@@ -148,7 +152,7 @@ public class printFormatDAO{
         Connection conn = ConnectionPool.getInstance().get();
         
         //do update statement
-        PreparedStatement ps = conn.prepareStatement("update \"printformat\" set ', \"size\" = '" + printFormat.getSize() + "', \"papertype\" + '" + printFormat.getPaperType() + "'," +
+        PreparedStatement ps = conn.prepareStatement("update \"printformat\" set \"size\" = '" + printFormat.getSize() + "', \"papertype\" = '" + printFormat.getPaperType() + "'," +
                 " \"sourcetype\" = '" + printFormat.getSourceType() + "', \"price\" = " + printFormat.getPrice() + " where" +
                 " \"id\" = '" + printFormat.getId() + "'");
         ps.execute();
@@ -166,7 +170,7 @@ public class printFormatDAO{
         Connection conn = ConnectionPool.getInstance().get();
         printFormat.setInDB(true);
         
-        PreparedStatement ps = conn.prepareStatement("insert into \"printformat\" values (?,?,?)");
+        PreparedStatement ps = conn.prepareStatement("insert into \"printformat\" values (?,?,?,?,?)");
         ps.setString(1,printFormat.getId());
         ps.setString(2,printFormat.getSize());
         ps.setString(3,printFormat.getPaperType());
