@@ -66,8 +66,7 @@ public class BackupDAO extends RSDAO{
         // run update or insert
         if (rsbo.isDirty()) {
             if (rsbo.isInDB()) {
-                // We are not supporting update
-                //update(rsbo, conn);
+                update(rsbo, conn);
             }else{
                 insert(rsbo, conn);
             }
