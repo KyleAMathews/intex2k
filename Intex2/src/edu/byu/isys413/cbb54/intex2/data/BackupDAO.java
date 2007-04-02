@@ -11,6 +11,7 @@ package edu.byu.isys413.cbb54.intex2.data;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 /**
  *
@@ -53,13 +54,21 @@ public class BackupDAO extends RSDAO{
     /// Read
     
     public RevenueSource read(String id, Connection conn) throws Exception{
-        id = GUID.generate("ba");
-        RevenueSource rs = new backup(id);
-        return rs;
+        backup bkup = new backup(id);
+        
+        PreparedStatement read = conn.prepareStatement(
+                "SELECT * FROM \"backup\" WHERE \"id\" = ?");
+        read.setString(1, id);
+        ResultSet rs = read.executeQuery();
+        
+        
+        // return the RevenueSource
+        RevenueSource rst = (RevenueSource)bkup;
+        return rst;
     }
     
-    ///////////////////////////////////////////
-    /// Save
+///////////////////////////////////////////
+/// Save
     
     public void save(RevenueSource rsbo, Connection conn) throws Exception{
         // check the dirty flag in the object.  if it is dirty,
@@ -78,6 +87,7 @@ public class BackupDAO extends RSDAO{
     }
     
     public void insert(RevenueSource rsbo, Connection conn) throws Exception{
+        rsbo.setInDB(true);
         System.out.println("inserting backup");
         backup bkup = (backup)rsbo;
         System.out.println("backup price: " + bkup.getPrice());
@@ -101,10 +111,10 @@ public class BackupDAO extends RSDAO{
         update.executeUpdate();
     }
     
-    //////////////////////////////////////////
-    /// delete
+//////////////////////////////////////////
+/// delete
     
-    // for business reasons we're not supporting deleting
+// for business reasons we're not supporting deleting
     
     
 }

@@ -6,8 +6,7 @@
 
 package edu.byu.isys413.cbb54.intex2.views;
 
-import javax.swing.UIManager;
-
+import javax.swing.*;
 /**
  *
  * @author  Cameron

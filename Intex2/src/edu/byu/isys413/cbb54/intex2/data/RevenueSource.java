@@ -41,7 +41,7 @@ public abstract class RevenueSource {
         return isInDB;
     }
 
-    public void seInDB(boolean isInDB) {
+    public void setInDB(boolean isInDB) {
         this.isInDB = isInDB;
     }
 
