@@ -20,6 +20,7 @@ DROP TABLE "rental";
 DROP TABLE "photoset";
 DROP TABLE "printformat";
 DROP TABLE "printorder";
+DROP TABLE "sale";
 
 
 
