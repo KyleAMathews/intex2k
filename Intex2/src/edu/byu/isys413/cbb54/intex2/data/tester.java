@@ -374,7 +374,22 @@ public class tester {
             txLine1.getRevenueSource().setPrice(12);
             System.out.println("Saving backupRS: "); RevenueSourceDAO.getInstance().save(txLine1.getRevenueSource());
 
-
+            /**
+             *TESTING PrintOrder (includes PhotoSet, PrintFormat)
+             *
+             */
+            
+            PhotoSet ps = PhotoSetDAO.getInstance().create();
+            ps.setDescription("Test photoset");
+            ps.setNumPhotos(3);
+            PhotoSetDAO.getInstance().save(ps);
+            
+            PhotoSet ps2 = PhotoSetDAO.getInstance().create();
+            ps2.setDescription("Test photoset 2");
+            ps2.setNumPhotos(5);
+            PhotoSetDAO.getInstance().save(ps2);
+            
+            
 //             /**
 //              *
 //              * TESTING COUPON
