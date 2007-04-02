@@ -61,6 +61,10 @@ public class BackupDAO extends RSDAO{
         read.setString(1, id);
         ResultSet rs = read.executeQuery();
         
+        // set variables
+        bkup.setSize(rs.getDouble("size"));
+        bkup.setPrice(rs.getDouble("price"));
+        bkup.setLengthOfBackup(rs.getDouble("lengthofbackup"));
         
         // return the RevenueSource
         RevenueSource rst = (RevenueSource)bkup;

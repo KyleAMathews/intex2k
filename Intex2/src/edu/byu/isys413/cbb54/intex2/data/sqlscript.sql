@@ -151,13 +151,13 @@ create table "backup"
 create table "serviceRepair"
 (
     "id" varchar(40) not null primary key,
-    "dateStarted" varchar(30),
-    "dateEnded" varchar(30),
+    "dateStarted" bigint(30),
+    "dateEnded" bigint(30),
     "description" varchar(150),
-    "laborHours" varchar(25),
+    "laborHours" double(25),
     "employeeID" varchar(30),
-    "datePickedUp" varchar(30),
-    "price" varchar(30)
+    "datePickedUp" bigint(30),
+    "price" double(30)
 );
 
 create table "printorder"
