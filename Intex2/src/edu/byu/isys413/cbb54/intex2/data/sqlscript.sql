@@ -180,7 +180,7 @@ create table "photoset"
 (
     "id" varchar(30) not null primary key,
     "description" varchar(100),
-    "quantity" int
+    "numPhotos" int
 );
 
 INSERT INTO "customer" VALUES ('00000109123b9144eb018b64001000', 'Cameron', 'Burgon', '851 Wymount Terrace', '', 'Provo', 'Utah', '84602', '8013786198', 'wherever@sd.com');
