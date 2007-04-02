@@ -24,6 +24,8 @@ DROP TABLE "sale";
 DROP TABLE "physical";
 DROP TABLE "forrent";
 DROP TABLE "forsale";
+DROP TABLE "conversionorder";
+DROP TABLE "conversiontype";
 
 
 
@@ -194,7 +196,7 @@ create table "photoset"
 create table "conversionorder"
 (
     "id" varchar(40) not null primary key,
-    "conversiontype"
+    "conversiontype" varchar(30)
 );
 
 create table "conversiontype"
