@@ -16,6 +16,7 @@ DROP TABLE "coupon";
 DROP TABLE "revenuesource";
 DROP TABLE "backup";
 DROP TABLE "serviceRepair";
+DROP TABLE "printorder";
 
 
 
@@ -156,6 +157,30 @@ create table "serviceRepair"
     "employeeID" varchar(30),
     "datePickedUp" varchar(30),
     "price" varchar(30)
+);
+
+create table "printorder"
+(
+    "id" varchar(30) not null primary key,
+    "quantity" int,
+    "photoSet" varchar(30),
+    "price" double
+);
+
+create table "printformat"
+(
+    "id" varchar(30) not null primary key,
+    "size" varchar(30),
+    "papertype" varchar(30),
+    "sourcetype" varchar(30),
+    "price" double
+);
+
+create table "photoset"
+(
+    "id" varchar(30) not null primary key,
+    "description" varchar(100),
+    "quantity" int
 );
 
 INSERT INTO "customer" VALUES ('00000109123b9144eb018b64001000', 'Cameron', 'Burgon', '851 Wymount Terrace', '', 'Provo', 'Utah', '84602', '8013786198', 'wherever@sd.com');
