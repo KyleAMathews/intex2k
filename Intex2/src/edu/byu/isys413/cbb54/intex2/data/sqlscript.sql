@@ -217,8 +217,7 @@ create table "forrent"
 (
     "id" varchar(40) not null primary key,
     "timesrented" int,
-    "currentrental" varchar(40),
-    "isrented" smallint
+    "currentrental" varchar(40)
 );
 
 create table "forsale"
@@ -256,7 +255,7 @@ INSERT INTO "rental" VALUES('3245643212342', 4321789, 432143);
 INSERT INTO "physical" VALUES('321423421', '543254', 'shelf 31', 1);
 INSERT INTO "physical" VALUES('54322345', '5543256543565', 'shelf 32', 0);
 
-INSERT INTO "forrent" VALUES('54322345', 3, '3245643212342', 1);
+INSERT INTO "forrent" VALUES('54322345', 3, '3245643212342');
 
 INSERT INTO "forsale" VALUES('321423421', 1);
 
