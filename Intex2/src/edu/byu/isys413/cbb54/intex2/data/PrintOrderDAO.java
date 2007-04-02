@@ -1,5 +1,5 @@
 /*
- * ConversionDAO.java
+ * PrintOrderDAO.java
  *
  * Created on March 30, 2007, 2:26 PM
  *
@@ -10,29 +10,30 @@
 package edu.byu.isys413.cbb54.intex2.data;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 
 /**
  *
  * @author kyle
  */
-public class ConversionDAO extends RSDAO{
+public class PrintOrderDAO extends RSDAO{
     
     ///////////////////////////////////////
     ///   Singleton pattern
     
-    private static ConversionDAO instance = null;
+    private static PrintOrderDAO instance = null;
     
     /** Creates a new instance of RSSFeedDAO */
-    private ConversionDAO() {
+    private PrintOrderDAO() {
     }
     
     /**
-     * Singleton Pattern to allow only one instance of ConversionDAO
-     * @return ConversionDAO
+     * Singleton Pattern to allow only one instance of PrintOrderDAO
+     * @return PrintOrderDAO
      */
-    public static synchronized ConversionDAO getInstance() {
+    public static synchronized PrintOrderDAO getInstance() {
         if (instance == null) {
-            instance = new ConversionDAO();
+            instance = new PrintOrderDAO();
         }
         return instance;
     }
@@ -42,8 +43,13 @@ public class ConversionDAO extends RSDAO{
     
     public RevenueSource create() throws Exception{
         String id = GUID.generate("po");
-        RevenueSource rs = new conversionBO(id);
-        System.out.println("I've created a ConversionBO  :  ID: " + rs.getId());
+        RevenueSource rs = new printOrder(id);
+        System.out.println("I've created a PrintOrder  :  ID: " + rs.getId());
+        
+        //put RS into Cache
+        Cache c = new Cache();
+        c.put(rs.getId(),rs);
+        
         return rs;
     }
     
@@ -51,14 +57,21 @@ public class ConversionDAO extends RSDAO{
     /// Read
     
     public RevenueSource read(String id, Connection conn) throws Exception {
-        conversionBO conv = new conversionBO(id);
+        printOrder po = new printOrder(id);
         
         //read from DB and populate new RS object
+        PreparedStatement ps = conn.prepareStatement("select * from \"printorder\" where \"id\" = '" + id + "'");
+        ps.execute();
+        
+        po.setQuantity(ps.getDouble("quantity"));
+        po.setPhotoSet(PhotoSetDAO.getInstance().read(ps.getString("photoSet")));
+        po.seInDB(true);
+        po.setDirty(false);
         
         //put into cache
         
         RevenueSource rs =(RevenueSource)conv;
-        return conv;
+        return po;
     }
     
     ///////////////////////////////////////////
@@ -81,7 +94,7 @@ public class ConversionDAO extends RSDAO{
     }
     
     public void insert(RevenueSource rsbo, Connection conn) throws Exception{
-        conversionBO po = (conversionBO)rsbo;
+        printOrder po = (printOrder)rsbo;
         
         //put into cache
         
@@ -89,7 +102,7 @@ public class ConversionDAO extends RSDAO{
     }
     
     public void update(RevenueSource rsbo, Connection conn) throws Exception{
-        conversionBO po = (conversionBO)rsbo;
+        printOrder po = (printOrder)rsbo;
 
         //update DB
         
