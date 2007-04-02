@@ -16,7 +16,7 @@ package edu.byu.isys413.cbb54.intex2.data;
 public class printOrder extends RevenueSource {
     
     private PhotoSet photoSet;
-//    private PrintFormat printFormat;
+    private printFormat printFormat;
     private int quantity;
     
     /** Creates a new instance of printOrder */
@@ -39,6 +39,15 @@ public class printOrder extends RevenueSource {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+        this.dirty = true;
+    }
+
+    public printFormat getPrintFormat() {
+        return printFormat;
+    }
+
+    public void setPrintFormat(printFormat printFormat) {
+        this.printFormat = printFormat;
         this.dirty = true;
     }
     
