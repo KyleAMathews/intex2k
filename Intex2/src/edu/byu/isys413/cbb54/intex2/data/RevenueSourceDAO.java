@@ -102,7 +102,7 @@ public class RevenueSourceDAO {
                 // call read with a connection on selected DAO
                 rs = dao.read(id, conn);
                 rs.setDirty(false);
-                rs.seInDB(true);
+                rs.setInDB(true);
                 
                 // save to cache
                 Cache c = Cache.getInstance();
