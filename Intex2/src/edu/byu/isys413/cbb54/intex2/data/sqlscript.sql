@@ -22,7 +22,7 @@ DROP TABLE "printorder";
 
 create table "customer"
 (
-    "id" VARCHAR(30) not null primary key,
+    "id" VARCHAR(40) not null primary key,
     "fname" VARCHAR(40),
     "lname" VARCHAR(40),
     "address1" VARCHAR(80),
@@ -36,8 +36,8 @@ create table "customer"
 
 create table "membership"
 (
-    "id" VARCHAR(30) not null primary key,
-    "custID" VARCHAR(30),
+    "id" VARCHAR(40) not null primary key,
+    "custID" VARCHAR(40),
     "startDate" VARCHAR(30),
     "endDate" VARCHAR(30),
     "creditCard" VARCHAR(16),
@@ -54,31 +54,31 @@ create table "backupservice"
 
 create table "interest"
 (
-    "id" VARCHAR(30) not null primary key,
+    "id" VARCHAR(40) not null primary key,
     "title" VARCHAR(128),
     "description" VARCHAR(256)
 );
 
 create table "memberinterests"
 (
-    "memberID" VARCHAR(30),
-    "interestID" VARCHAR(30)
+    "memberID" VARCHAR(40),
+    "interestID" VARCHAR(40)
 );
 
 create table "transaction"
 (
-    "id" varchar(30) not null primary key,
+    "id" varchar(40) not null primary key,
     "type" varchar(80),
     "status" varchar(10),
     "custid" varchar(80),
     "empid" varchar(80),
     "storeid" varchar(80),
-    "origtx" varchar(30)
+    "origtx" varchar(40)
 );
  
 create table "payment"
 (
-    "id" varchar(30) not null primary key,
+    "id" varchar(40) not null primary key,
     "amount" double,
     "ccnumber" varchar(20),
     "ccexpiration" varchar(10),
@@ -89,7 +89,7 @@ create table "payment"
  
 create table "employee"
 (
-    "id" varchar(30) not null primary key,
+    "id" varchar(40) not null primary key,
     "fname" varchar (80),
     "lname" varchar(80),
     "address1" varchar(80),
@@ -102,12 +102,12 @@ create table "employee"
     "ssnumber" varchar(15),
     "hiredate" varchar(80),
     "salary" double,
-    "storeid" varchar(30)
+    "storeid" varchar(40)
 );
  
 create table "store"
 (
-    "id" varchar(30) not null primary key,
+    "id" varchar(40) not null primary key,
     "name" varchar(80),
     "address1" varchar(80),
     "address2" varchar(80),
@@ -116,26 +116,26 @@ create table "store"
     "zip" varchar(80),
     "phone" varchar(15),
     "fax" varchar(15),
-    "managerid" varchar(30)
+    "managerid" varchar(40)
 );
  
 create table "transactionline"
 (
-    "id" varchar(30) not null primary key,
-    "revenuesourceid" varchar(30),
-    "transactionid" varchar(30),
-    "rstype" varchar(30)
+    "id" varchar(40) not null primary key,
+    "revenuesourceid" varchar(40),
+    "transactionid" varchar(40),
+    "rstype" varchar(40)
 );
  
 create table "coupon"
 (
-    "id" varchar(30) not null primary key,
+    "id" varchar(40) not null primary key,
     "amount" double
 );
 
 create table "revenuesource"
 (
-    "id" varchar(30) not null primary key,
+    "id" varchar(40) not null primary key,
     "type" varchar(80)
 );
 
@@ -149,7 +149,7 @@ create table "backup"
 
 create table "serviceRepair"
 (
-    "id" varchar(30) not null primary key,
+    "id" varchar(40) not null primary key,
     "dateStarted" varchar(30),
     "dateEnded" varchar(30),
     "description" varchar(150),
@@ -183,6 +183,7 @@ create table "photoset"
     "numPhotos" int
 );
 
+>>>>>>> .r42
 INSERT INTO "customer" VALUES ('00000109123b9144eb018b64001000', 'Cameron', 'Burgon', '851 Wymount Terrace', '', 'Provo', 'Utah', '84602', '8013786198', 'wherever@sd.com');
 INSERT INTO "customer" VALUES ('00000109123b925d16688bc2001000', 'Jamie', 'Burgon', '851 Wymount Terrace', '', 'Provo', 'Utah', '84604', '8013786189', 'wherever@sd.com');
 INSERT INTO "customer" VALUES ('00000109123b8e75a1ce5a33001000', 'John', 'Doe', '123 Somewhere', '', 'Nowhere', 'Nevada', '87839', '3418394854', 'wherever@sd.com');
