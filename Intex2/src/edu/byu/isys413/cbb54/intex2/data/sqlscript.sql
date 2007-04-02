@@ -17,6 +17,7 @@ DROP TABLE "revenuesource";
 DROP TABLE "backup";
 DROP TABLE "serviceRepair";
 DROP TABLE "printorder";
+DROP TABLE "sale";
 
 
 
@@ -181,6 +182,12 @@ create table "photoset"
     "id" varchar(30) not null primary key,
     "description" varchar(100),
     "numPhotos" int
+);
+
+create table "sale"
+(
+    "id" varchar(40) not null primary key,
+    "quantity" int
 );
 
 >>>>>>> .r42
