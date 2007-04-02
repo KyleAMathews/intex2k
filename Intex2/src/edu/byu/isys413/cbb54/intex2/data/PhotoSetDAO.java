@@ -132,24 +132,23 @@ public class PhotoSetDAO{
     
     public synchronized void save(PhotoSet ps, Connection conn) throws SQLException, Exception {
         if (ps.getIsInDB() == true) {
-            update(ps);
+            update(ps,conn);
         }else{
-            insert(ps);
+            insert(ps,conn);
         }
     }
     
     public synchronized void save(PhotoSet ps) throws SQLException, Exception {
+        Connection conn = ConnectionPool.getInstance().get();
         if (ps.getIsInDB() == true) {
-            update(ps);
+            update(ps,conn);
         }else{
-            insert(ps);
+            insert(ps,conn);
         }
+        ConnectionPool.getInstance().release(conn);
     }
     
-    private synchronized void update(PhotoSet photoSet) throws Exception{
-        //get connection
-        Connection conn = ConnectionPool.getInstance().get();
-        
+    private synchronized void update(PhotoSet photoSet, Connection conn) throws Exception{
         //do update statement
         PreparedStatement ps = conn.prepareStatement("update \"photoset\" set \"description\" = '" + photoSet.getDescription() 
                + "', \"numPhotos\" = " + photoSet.getNumPhotos() + " where \"id\" = '" + photoSet.getId() + "'");
@@ -164,8 +163,7 @@ public class PhotoSetDAO{
         Cache.getInstance().touch(photoSet.getId());
     }
     
-    private synchronized void insert(PhotoSet photoSet) throws SQLException, Exception{
-        Connection conn = ConnectionPool.getInstance().get();
+    private synchronized void insert(PhotoSet photoSet, Connection conn) throws SQLException, Exception{
         photoSet.setInDB(true);
         
         PreparedStatement ps = conn.prepareStatement("insert into \"photoset\" values (?,?,?)");
