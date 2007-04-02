@@ -19,6 +19,7 @@ public class printFormat {
     private String size;
     private String paperType;
     private String sourceType;
+    private double price;
     private boolean inDB;
     private boolean dirty;
     
@@ -60,7 +61,7 @@ public class printFormat {
         this.dirty = true;
     }
 
-    public boolean isInDB() {
+    public boolean getIsInDB() {
         return inDB;
     }
 
@@ -71,7 +72,14 @@ public class printFormat {
     public boolean isDirty() {
         return dirty;
     }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+        this.dirty = true;
+    }
     
 }
-
-// take it away Tyler
