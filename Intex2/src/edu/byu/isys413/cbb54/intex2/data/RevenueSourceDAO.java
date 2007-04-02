@@ -34,6 +34,7 @@ public class RevenueSourceDAO {
         DAOmap.put("po", PrintOrderDAO.getInstance());
         DAOmap.put("rn", RentalDAO.getInstance());
         DAOmap.put("rp", RepairDAO.getInstance());
+        DAOmap.put("co", ConversionDAO.getInstance());
     }
     
     /**
@@ -46,7 +47,7 @@ public class RevenueSourceDAO {
         }
         return instance;
     }
-    // KEY (ba = backup | rn = rental | us = used | rp = repair | po = printOrder | sale = Sale)
+    // KEY (ba = backup | rn = rental | us = used | rp = repair | po = printOrder | sale = Sale | co = conversion)
     ///////////////////////////////////////////
     //// Create
     public RevenueSource create(String sku) throws DataException{
