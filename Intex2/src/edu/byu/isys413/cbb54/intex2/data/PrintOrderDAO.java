@@ -89,9 +89,12 @@ public class PrintOrderDAO extends RSDAO{
                 insert(rsbo, conn);
             }
             
+            //update PhotoSet associated with PrintOrder
+            printOrder po = (printOrder)rsbo;
+            PhotoSetDAO.getInstance().save(po.getPhotoSet(),conn);
+            
             // set the dirty flag to false now that we've saved it
             rsbo.setDirty(false);
-            
         }
     }
     
@@ -110,11 +113,8 @@ public class PrintOrderDAO extends RSDAO{
     }
     
     public void update(RevenueSource rsbo, Connection conn) throws Exception{
-        printOrder po = (printOrder)rsbo;
-
-        //update DB
-        
-        //update cache
+        //We do not support the update function for a Revenue source.  All information
+        //will be added and static at the time of creation.
     }
     
     

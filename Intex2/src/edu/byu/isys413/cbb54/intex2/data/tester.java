@@ -382,7 +382,7 @@ public class tester {
             PhotoSet ps = PhotoSetDAO.getInstance().create();
             ps.setDescription("Test photoset");
             ps.setNumPhotos(3);
-            PhotoSetDAO.getInstance().save(ps);
+            //PhotoSetDAO.getInstance().save(ps);
             
             PhotoSet ps2 = PhotoSetDAO.getInstance().create();
             ps2.setDescription("Test photoset 2");
