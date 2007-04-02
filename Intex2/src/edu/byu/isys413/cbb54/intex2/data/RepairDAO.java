@@ -113,11 +113,16 @@ public class RepairDAO extends RSDAO{
     public void update(RevenueSource rsbo, Connection conn) throws Exception{
         repair rp = (repair)rsbo;
         PreparedStatement update = conn.prepareStatement(
-                "UPDATE \"serviceRepair\" SET \"size\"=?, \"lengthofbackup\" = ?, \"price\" = ? WHERE \"id\" = ?");
-        update.setDouble(1, rp.getSize());
-        update.setDouble(2, rp.getLengthOfBackup());
-        update.setDouble(3, rp.getPrice());
-        update.setString(4, rp.getId());
+                "UPDATE \"serviceRepair\" SET \"dateStarted\"=?, \"dateEnded\" = ?, \"description\" = ?, \"laborHours\" = ?,\"employeeID\" = ?," +
+                "\"datePickedUp\" = ?,\"price\" = ?  WHERE \"id\" = ?");
+        update.setLong(1, rp.getDateStarted());
+        update.setLong(2, rp.getDateCompleted());
+        update.setString(3, rp.getDescription());
+        update.setDouble(4, rp.getLaborHours());
+        update.setString(5, rp.getEmployeeID());
+        update.setLong(6, rp.getDatePickedUp());
+        update.setDouble(7, rp.getPrice());
+        update.setString(8, rp.getId());
         update.executeUpdate();
     }
     
