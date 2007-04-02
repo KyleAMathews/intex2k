@@ -85,7 +85,7 @@ public class SaleDAO extends RSDAO {
         insert.setString(1, sale.getId());
         insert.setDouble(2, sale.getQuantity());
         insert.executeUpdate();
-        sale.seInDB(true);
+        sale.setInDB(true);
      }
     
      public void update(RevenueSource rsbo, Connection conn) throws Exception{
