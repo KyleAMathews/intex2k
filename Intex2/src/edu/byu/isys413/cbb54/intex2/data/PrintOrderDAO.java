@@ -98,9 +98,15 @@ public class PrintOrderDAO extends RSDAO{
     public void insert(RevenueSource rsbo, Connection conn) throws Exception{
         printOrder po = (printOrder)rsbo;
         
-        //put into cache
-        
         //insert object into DB
+        PreparedStatement ps = conn.prepareStatement("insert into \"printorder\" values (?,?,?,?,?)");
+        ps.setString(1,po.getId());
+        ps.setInt(2,po.getQuantity());
+        ps.setString(3,po.getPhotoSet().getId());
+        ps.setString(4,po.getPrintFormat().getId());
+        ps.setDouble(5,po.getPrice());
+        ps.execute();
+        ps.close();
     }
     
     public void update(RevenueSource rsbo, Connection conn) throws Exception{

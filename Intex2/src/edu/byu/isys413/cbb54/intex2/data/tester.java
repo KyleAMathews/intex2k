@@ -428,8 +428,11 @@ public class tester {
             printFormatDAO.getInstance().save(pf2);
             
             //PRINT ORDER
-            RevenueSource po = PrintOrderDAO.getInstance().create();
-            po.setPrice(4);
+            printOrder po = (printOrder)PrintOrderDAO.getInstance().create();
+            po.setPhotoSet(PhotoSetDAO.getInstance().read(ps.getId()));
+            po.setPrintFormat(printFormatDAO.getInstance().read(pf.getId()));
+            po.setQuantity(3);
+            po.setPrice((po.getPrintFormat().getPrice() * po.getQuantity()));
             RevenueSourceDAO.getInstance().save(po);
             
             

@@ -168,7 +168,7 @@ create table "serviceRepair"
 
 create table "printorder"
 (
-    "id" varchar(30) not null primary key,
+    "id" varchar(40) not null primary key,
     "quantity" int,
     "photoSet" varchar(30),
     "printformat" varchar(30),
