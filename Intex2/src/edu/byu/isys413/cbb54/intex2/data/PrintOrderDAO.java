@@ -11,6 +11,7 @@ package edu.byu.isys413.cbb54.intex2.data;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 /**
  *
@@ -47,7 +48,7 @@ public class PrintOrderDAO extends RSDAO{
         System.out.println("I've created a PrintOrder  :  ID: " + rs.getId());
         
         //put RS into Cache
-        Cache c = new Cache();
+        Cache c = Cache.getInstance();
         c.put(rs.getId(),rs);
         
         return rs;
@@ -61,17 +62,17 @@ public class PrintOrderDAO extends RSDAO{
         
         //read from DB and populate new RS object
         PreparedStatement ps = conn.prepareStatement("select * from \"printorder\" where \"id\" = '" + id + "'");
-        ps.execute();
+        ResultSet result = ps.executeQuery();
         
-        po.setQuantity(ps.getDouble("quantity"));
-        po.setPhotoSet(PhotoSetDAO.getInstance().read(ps.getString("photoSet")));
-        po.seInDB(true);
+        po.setQuantity(result.getInt("quantity"));
+        po.setPhotoSet(PhotoSetDAO.getInstance().read(result.getString("photoset")));
+        po.setInDB(true);
         po.setDirty(false);
-        po.setPrice(ps.getDouble("price"));
+        po.setPrice(result.getDouble("price"));
         
         //put into cache
         
-        RevenueSource rs =(RevenueSource)conv;
+        RevenueSource rs =(RevenueSource)po;
         return po;
     }
     
