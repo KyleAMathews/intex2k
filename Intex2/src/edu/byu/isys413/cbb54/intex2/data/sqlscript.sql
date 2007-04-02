@@ -191,6 +191,19 @@ create table "photoset"
     "numPhotos" int
 );
 
+create table "conversionorder"
+(
+    "id" varchar(40) not null primary key,
+    "conversiontype"
+);
+
+create table "conversiontype"
+(
+    "id" varchar(30) not null primary key,
+    "sourcetype" varchar(30),
+    "destinationtype" varchar(30)
+);
+
 create table "sale"
 (
     "id" varchar(40) not null primary key,
