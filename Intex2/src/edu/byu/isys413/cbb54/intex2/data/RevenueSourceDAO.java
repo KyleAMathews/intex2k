@@ -27,7 +27,7 @@ public class RevenueSourceDAO {
     
     private static RevenueSourceDAO instance = null;
     
-    /** Creates a new instance of RSSFeedDAO */
+    /** Creates a new instance of RevenueSourceDAO */
     private RevenueSourceDAO() {
         DAOmap.put("sa", SaleDAO.getInstance());
         DAOmap.put("ba", BackupDAO.getInstance());
