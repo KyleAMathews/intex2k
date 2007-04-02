@@ -16,8 +16,7 @@ DROP TABLE "coupon";
 DROP TABLE "revenuesource";
 DROP TABLE "backup";
 DROP TABLE "serviceRepair";
-DROP TABLE "printorder";
-DROP TABLE "sale";
+DROP TABLE "rental";
 
 
 
@@ -187,6 +186,70 @@ create table "photoset"
 create table "sale"
 (
     "id" varchar(40) not null primary key,
-    "quantity" int
+    "quantity" int,
+    "productid" varchar(40)
 );
 
+create table "rental"
+(
+    "id" varchar(40) not null primary key,
+    "datedue" bigint,
+    "dateout" bigint
+
+);
+
+create table "physical"
+(
+    "id" varchar(40) not null primary key,
+    "serialnum" varchar(40),
+    "shelflocation" varchar(40),
+    "forsale" smallint
+);
+
+create table "forrent"
+(
+    "id" varchar(40) not null primary key,
+    "timesrented" int,
+    "currentrental" varchar(40)
+);
+
+create table "forsale"
+(
+    "id" varchar(40) not null primary key,
+    "isnew" smallint
+);
+
+INSERT INTO "customer" VALUES ('00000109123b9144eb018b64001000', 'Cameron', 'Burgon', '851 Wymount Terrace', '', 'Provo', 'Utah', '84602', '8013786198', 'wherever@sd.com');
+INSERT INTO "customer" VALUES ('00000109123b925d16688bc2001000', 'Jamie', 'Burgon', '851 Wymount Terrace', '', 'Provo', 'Utah', '84604', '8013786189', 'wherever@sd.com');
+INSERT INTO "customer" VALUES ('00000109123b8e75a1ce5a33001000', 'John', 'Doe', '123 Somewhere', '', 'Nowhere', 'Nevada', '87839', '3418394854', 'wherever@sd.com');
+INSERT INTO "customer" VALUES ('00000109123b8e75a1ce5a34001000', 'Jane', 'Doe', '123 Somewhere', '', 'Nowhere', 'Nevada', '87839', '3418394854', 'wherever@sd.com');
+
+INSERT INTO "memberinterests" VALUES('00000109123b925d16688bc2001000','0000011105caf55500f1fec0a80204');
+
+INSERT INTO "transactionline" VALUES('00000111728454ec00e60e0a500442','000001117284553c0014ad0a500442','000001117284553c0014af0a500442', 'backup');
+
+INSERT INTO "transaction" VALUES('000001117284553c0014af0a500442','','complete','00000109123b9144eb018b64001000','000001117284553c0014b10a500442','000001117284553c0014b20a500442','');
+
+INSERT INTO "payment" VALUES('000001117284553c0014b00a500442',14.50,'1234-5678-9012-3456','06/07','000001117284553c0014af0a500442',0.0,'Credit Card');
+
+INSERT INTO "employee" VALUES('000001117284553c0014b10a500442','Ray','Thompson','123 East BYU','','Provo','Utah','84604','801-555-5555','thompson@thompson.com','123-45-6789','12/05',123.45,'000001117284553c0014b20a500442');
+INSERT INTO "employee" VALUES('000001117284553c0014b30a500442','Steve','Manager','123 East BYU','','Provo','Utah','84604','801-555-5555','thompson@thompson.com','123-45-6789','12/05',123.45,'000001117284553c0014b20a500442');
+
+INSERT INTO "store" VALUES('000001117284553c0014b20a500442','Provo Center','123 Center Street','Suite 1','Provo','Utah','84604','108-333-3333','801-333-3334','000001117284553c0014b30a500442');
+
+INSERT INTO "coupon" VALUES('000001117284553c0014b40a500442',2.00);
+
+INSERT INTO "revenuesource" VALUES('000001117284553c0014b50a500442','Sale');
+
+INSERT INTO "backup" VALUES('1234', 1, 100, .89);
+
+INSERT INTO "rental" VALUES('3245643212342', 4321789, 432143);
+
+INSERT INTO "physical" VALUES('321423421', '543254', 'shelf 31', 1);
+INSERT INTO "physical" VALUES('54322345', '5543256543565' 'shelf 32', 0);
+
+INSERT INTO "forrent" VALUES('54322345', '3', '3245643212342');
+
+INSERT INTO "forsale" VALUES('321423421', '1');
+
+INSERT INTO "serviceRepair" VALUES('1234', '123145124314', '124125123123', 'What a mess it was fixing that guys widget -- a nightmare', '10', '2342352342354234', '12412512312312', '151.21'); 
