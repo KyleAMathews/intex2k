@@ -1,5 +1,5 @@
 /*
- * SaleBO.java
+ * Sale.java
  *
  * Created on March 29, 2007, 1:31 PM
  *
@@ -13,15 +13,16 @@ package edu.byu.isys413.cbb54.intex2.data;
  * Extends abstract class RevenueSource
  * @author Group2K
  */
-public class SaleBO extends RevenueSource {
+public class Sale extends RevenueSource {
     
     
     private int quantity;
     /**
-     * Create new instance of SaleBO
+     * Create new instance of Sale
+     * 
      * @param id String
      */
-    public SaleBO(String id){
+    public Sale(String id){
         this.id = id;
     }
     

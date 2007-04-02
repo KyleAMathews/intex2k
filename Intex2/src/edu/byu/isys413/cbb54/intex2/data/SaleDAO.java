@@ -10,6 +10,7 @@
 package edu.byu.isys413.cbb54.intex2.data;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 
 /**
  *
@@ -77,14 +78,12 @@ public class SaleDAO extends RSDAO {
      }
             
      public void insert(RevenueSource rsbo, Connection conn) throws Exception{
-        System.out.println("inserting backup");
+        System.out.println("inserting sale");
         Sale sale = (Sale)rsbo;
         PreparedStatement insert = conn.prepareStatement(
                 "INSERT INTO \"sale\" VALUES (?,?,?,?)");
         insert.setString(1, sale.getId());
-        insert.setDouble(2, sale.getSize());
-        insert.setDouble(3, sale.getLengthOfBackup());
-        insert.setDouble(4, sale.getPrice());
+        insert.setDouble(2, sale.getQuantity());
         insert.executeUpdate();
         sale.seInDB(true);
      }
