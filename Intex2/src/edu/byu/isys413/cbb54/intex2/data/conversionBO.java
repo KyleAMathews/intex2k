@@ -13,14 +13,14 @@ package edu.byu.isys413.cbb54.intex2.data;
  *
  * @author kyle
  */
-public class printOrder extends RevenueSource {
+public class conversionBO extends RevenueSource {
     
     private PhotoSet photoSet;
 //    private PrintFormat printFormat;
     private int quantity;
     
     /** Creates a new instance of printOrder */
-    public printOrder(String id) {
+    public conversionBO(String id) {
         this.id = id;
     }
 

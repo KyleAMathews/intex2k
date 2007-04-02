@@ -10,6 +10,7 @@
 package edu.byu.isys413.cbb54.intex2.data;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 
 /**
  *
@@ -43,7 +44,7 @@ public class ConversionDAO extends RSDAO{
     public RevenueSource create() throws Exception{
         String id = GUID.generate("po");
         RevenueSource rs = new conversionBO(id);
-        System.out.println("I've created a ConversionBO  :  ID: " + rs.getId());
+        System.out.println("I've created a conversionBO  :  ID: " + rs.getId());
         return rs;
     }
     
@@ -51,14 +52,14 @@ public class ConversionDAO extends RSDAO{
     /// Read
     
     public RevenueSource read(String id, Connection conn) throws Exception {
-        conversionBO conv = new conversionBO(id);
+        conversionBO conversionBO = new conversionBO(id);
         
         //read from DB and populate new RS object
         
         //put into cache
         
-        RevenueSource rs =(RevenueSource)conv;
-        return conv;
+        RevenueSource rs =(RevenueSource)conversionBO;
+        return conversionBO;
     }
     
     ///////////////////////////////////////////
