@@ -17,6 +17,9 @@ DROP TABLE "revenuesource";
 DROP TABLE "backup";
 DROP TABLE "serviceRepair";
 DROP TABLE "rental";
+DROP TABLE "photoset";
+DROP TABLE "printformat";
+DROP TABLE "printorder";
 
 
 
