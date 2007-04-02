@@ -398,8 +398,8 @@ public class tester {
             System.out.println("ps3 in Cache -> " + Cache.getInstance().containsKey(ps3.getId()) );
             
             // test the update(save)
-            interest2.setTitle("HDR Photography");
-            InterestDAO.getInstance().save(interest2);
+            ps.setDescription("HDR Photography");
+            PhotoSetDAO.getInstance().save(ps);
             
             
             

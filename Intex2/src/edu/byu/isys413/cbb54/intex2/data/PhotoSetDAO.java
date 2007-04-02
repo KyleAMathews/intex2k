@@ -151,8 +151,8 @@ public class PhotoSetDAO{
         Connection conn = ConnectionPool.getInstance().get();
         
         //do update statement
-        PreparedStatement ps = conn.prepareStatement("update \"photoset\" set \"id\" = '" + photoSet.getId() +
-                "', \"description\" = '" + photoSet.getDescription() + "', \"numphotos\" + '" + photoSet.getNumPhotos() + "'");
+        PreparedStatement ps = conn.prepareStatement("update \"photoset\" set \"description\" = '" + photoSet.getDescription() 
+               + "', \"numPhotos\" = " + photoSet.getNumPhotos() + " where \"id\" = '" + photoSet.getId() + "'");
         ps.execute();
         conn.commit();
         ps.close();
