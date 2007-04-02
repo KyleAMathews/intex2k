@@ -67,6 +67,7 @@ public class PrintOrderDAO extends RSDAO{
         po.setPhotoSet(PhotoSetDAO.getInstance().read(ps.getString("photoSet")));
         po.seInDB(true);
         po.setDirty(false);
+        po.setPrice(ps.getDouble("price"));
         
         //put into cache
         
