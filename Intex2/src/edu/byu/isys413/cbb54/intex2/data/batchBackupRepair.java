@@ -35,15 +35,21 @@ public class batchBackupRepair {
             System.out.println(System.currentTimeMillis() - (long)(30*24*60*60*1000));
             // select repair transactions which are 30 days old and send email
             PreparedStatement ps = conn.prepareStatement("SELECT * FROM \"serviceRepair\" WHERE \"dateEnded\" <= ?");
+            System.out.println(ps);
             ps.setLong(1, (System.currentTimeMillis() - (long)(30*24*60*60*1000))); //subtract num of miliseconds in 30 days from current time
             ResultSet rs = ps.executeQuery();
-            System.out.println(rs.getString("id"));
+            
+            
             while(rs.next()){
+                System.out.println(rs.getString("id"));
                 // select transactionline using repair revenuesource id
+                //ps.clearParameters();
                 PreparedStatement txlinePS = conn.prepareStatement("SELECT * FROM \"transactionline\" WHERE \"revenuesourceid\" = ?");
+                txlinePS.clearParameters();
                 txlinePS.setString(1, rs.getString("id")); //subtract num of miliseconds in 30 days from current time
                 ResultSet txlineRS = ps.executeQuery();
-                
+                txlineRS.next();
+                System.out.println(txlineRS.getString("id")+ " txlineRS");
                 // use transaction id to get customer's email
                 Transaction trans = TransactionDAO.getInstance().read(txlineRS.getString("transactionid"));
                 Customer cust = CustomerDAO.getInstance().read(trans.getCustomer().getId());
@@ -76,7 +82,7 @@ public class batchBackupRepair {
                 throw new DataException("Big error: could not even release the connection", e2);
             }
             
-            throw new DataException("Could not retrieve record for id=" + e);
+            throw new DataException("   :   " + e);
         }
         
         

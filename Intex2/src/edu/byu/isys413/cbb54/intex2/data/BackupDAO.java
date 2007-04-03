@@ -58,6 +58,7 @@ public class BackupDAO extends RSDAO{
         
         PreparedStatement read = conn.prepareStatement(
                 "SELECT * FROM \"backup\" WHERE \"id\" = ?");
+        read.clearParameters();
         read.setString(1, id);
         ResultSet rs = read.executeQuery();
         
@@ -97,6 +98,7 @@ public class BackupDAO extends RSDAO{
         System.out.println("backup price: " + bkup.getPrice());
         PreparedStatement insert = conn.prepareStatement(
                 "INSERT INTO \"backup\" VALUES (?,?,?,?)");
+        insert.clearParameters();
         insert.setString(1, bkup.getId());
         insert.setDouble(2, bkup.getSize());
         insert.setDouble(3, bkup.getLengthOfBackup());
@@ -108,6 +110,7 @@ public class BackupDAO extends RSDAO{
         backup bkup = (backup)rsbo;
         PreparedStatement update = conn.prepareStatement(
                 "UPDATE \"backup\" SET \"size\"=?, \"lengthofbackup\" = ?, \"price\" = ? WHERE \"id\" = ?");
+        update.clearParameters();
         update.setDouble(1, bkup.getSize());
         update.setDouble(2, bkup.getLengthOfBackup());
         update.setDouble(3, bkup.getPrice());
