@@ -54,7 +54,6 @@ public class RevenueSourceDAO {
         try{
             // check first digit if backup/rental/used/repair/printOrder
             String type = String.valueOf(sku.charAt(0)) + String.valueOf(sku.charAt(1));
-            boolean isSale = false;
             
             // grab DAO from map
             RSDAO dao = DAOmap.get(type);
