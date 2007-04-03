@@ -11,6 +11,7 @@ package edu.byu.isys413.cbb54.intex2.data;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 /**
  *
@@ -52,9 +53,20 @@ public class SaleDAO extends RSDAO {
     /// Read
     
     public RevenueSource read(String id, Connection conn){
-        RevenueSource rs = null;
+        Sale sale = new Sale(id);
         
-        return rs;
+        PreparedStatement read = conn.prepareStatement(
+                "SELECT * FROM \"sale\" WHERE \"id\" = ?");
+        read.setString(1, id);
+        ResultSet rs = read.executeQuery();
+        
+        // set variables
+        sale.setProduct(ProductDAO.getInstance().read(rs.getString("productID")));
+        sale.setQuantity(rs.getInt("quantity"));
+        
+        // return the RevenueSource
+        RevenueSource rst = (RevenueSource)sale;
+        return rst;
     }
     
     ///////////////////////////////////////////
@@ -81,15 +93,23 @@ public class SaleDAO extends RSDAO {
         System.out.println("inserting sale");
         Sale sale = (Sale)rsbo;
         PreparedStatement insert = conn.prepareStatement(
-                "INSERT INTO \"sale\" VALUES (?,?,?,?)");
+                "INSERT INTO \"sale\" VALUES (?,?,?)");
         insert.setString(1, sale.getId());
         insert.setDouble(2, sale.getQuantity());
+        insert.setString(3, sale.getProduct().getId());
         insert.executeUpdate();
         sale.setInDB(true);
      }
     
      public void update(RevenueSource rsbo, Connection conn) throws Exception{
-         
+        System.out.println("Updating sale");
+        Sale sale = (Sale)rsbo;
+        PreparedStatement update = conn.prepareStatement(
+                "UPDATE \"sale\" SET \"quantity\"=?, \"productID\" = ? WHERE \"id\" = ?");
+        update.setDouble(1, sale.getQuantity());
+        update.setString(2, sale.getProduct().getId());
+        update.setString(1, sale.getId());
+        update.executeUpdate();
      }
     
     
