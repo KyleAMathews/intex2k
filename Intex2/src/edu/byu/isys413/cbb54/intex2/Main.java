@@ -10,6 +10,7 @@
 package edu.byu.isys413.cbb54.intex2;
 
 import edu.byu.isys413.cbb54.intex2.data.*;
+import edu.byu.isys413.cbb54.intex2.views.*;
 
 
 
@@ -27,16 +28,10 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        try{
-        //new GUI().setVisible(true);//creates and loads the gui 
-        new tester().main(args);
-        batchBackupRepair batchbackup = new batchBackupRepair();
-        batchbackup.batch();
+        //new tester().main(args);
         
-        
-        }catch(DataException e){
-            System.out.println(e);        }
-        
+        Login l = new Login();
+        l.setVisible(true);
         
     }
     
