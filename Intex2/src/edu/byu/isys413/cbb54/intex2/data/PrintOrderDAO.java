@@ -44,7 +44,10 @@ public class PrintOrderDAO extends RSDAO{
     
     public RevenueSource create() throws Exception{
         String id = GUID.generate("po");
+        String poid = GUID.generate();
         RevenueSource rs = new printOrder(id);
+        printOrder po = (printOrder)rs;
+        po.setPOID(poid);
         System.out.println("I've created a PrintOrder  :  ID: " + rs.getId());
         
         //put RS into Cache
@@ -64,6 +67,7 @@ public class PrintOrderDAO extends RSDAO{
         PreparedStatement ps = conn.prepareStatement("select * from \"printorder\" where \"id\" = '" + id + "'");
         ResultSet result = ps.executeQuery();
         
+        po.setPOID(result.getString("poid"));
         po.setQuantity(result.getInt("quantity"));
         po.setPhotoSet(PhotoSetDAO.getInstance().read(result.getString("photoset")));
         po.setInDB(true);
@@ -102,12 +106,13 @@ public class PrintOrderDAO extends RSDAO{
         printOrder po = (printOrder)rsbo;
         
         //insert object into DB
-        PreparedStatement ps = conn.prepareStatement("insert into \"printorder\" values (?,?,?,?,?)");
+        PreparedStatement ps = conn.prepareStatement("insert into \"printorder\" values (?,?,?,?,?,?)");
         ps.setString(1,po.getId());
-        ps.setInt(2,po.getQuantity());
-        ps.setString(3,po.getPhotoSet().getId());
-        ps.setString(4,po.getPrintFormat().getId());
-        ps.setDouble(5,po.getPrice());
+        ps.setString(2,po.getPoID());
+        ps.setInt(3,po.getQuantity());
+        ps.setString(4,po.getPhotoSet().getId());
+        ps.setString(5,po.getPrintFormat().getId());
+        ps.setDouble(6,po.getPrice());
         ps.execute();
         ps.close();
     }

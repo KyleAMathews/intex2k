@@ -18,6 +18,7 @@ public class printOrder extends RevenueSource {
     private PhotoSet photoSet;
     private printFormat printFormat;
     private int quantity;
+    private String poID;
     
     /** Creates a new instance of printOrder */
     public printOrder(String id) {
@@ -48,6 +49,15 @@ public class printOrder extends RevenueSource {
 
     public void setPrintFormat(printFormat printFormat) {
         this.printFormat = printFormat;
+        this.dirty = true;
+    }
+
+    public String getPoID() {
+        return poID;
+    }
+
+    public void setPOID(String poID) {
+        this.poID = poID;
         this.dirty = true;
     }
     

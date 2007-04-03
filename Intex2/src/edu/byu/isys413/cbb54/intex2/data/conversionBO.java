@@ -15,8 +15,7 @@ package edu.byu.isys413.cbb54.intex2.data;
  */
 public class conversionBO extends RevenueSource {
     
-    private PhotoSet photoSet;
-//    private PrintFormat printFormat;
+    private conversionTypeBO conversionType;
     private int quantity;
     
     /** Creates a new instance of printOrder */
@@ -24,12 +23,12 @@ public class conversionBO extends RevenueSource {
         this.id = id;
     }
 
-    public PhotoSet getPhotoSet() {
-        return photoSet;
+    public conversionTypeBO getConversionType() {
+        return conversionType;
     }
 
-    public void setPhotoSet(PhotoSet photoSet) {
-        this.photoSet = photoSet;
+    public void setConversionType(conversionTypeBO conversionType) {
+        this.conversionType = conversionType;
         this.dirty = true;
     }
 
@@ -41,5 +40,4 @@ public class conversionBO extends RevenueSource {
         this.quantity = quantity;
         this.dirty = true;
     }
-    
 }

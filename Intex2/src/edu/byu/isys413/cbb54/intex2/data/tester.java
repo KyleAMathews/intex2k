@@ -332,7 +332,7 @@ public class tester {
              * TESTING TRANSACTIONLINE
              *
              */
-            
+            /*
             System.out.println("Creating a new backup TransactionLine");
             TransactionLine txLine1 = TransactionLineDAO.getInstance().create(tx, "ba");
             
@@ -361,7 +361,7 @@ public class tester {
              * TESTING REVENUESOURCE
              *
              */
-            
+            /*
             System.out.println("\n\nTESTING REVENUESOURCE\n");
             System.out.println("\n");
             //System.out.println("Read backupRS = orignal: " + (txLine1.getRevenueSource().getId() == ((RevenueSource)Cache.getInstance().get(txLine1.getRevenueSource())).getId()));
@@ -373,7 +373,7 @@ public class tester {
             
             txLine1.getRevenueSource().setPrice(12);
             System.out.println("Saving backupRS: "); RevenueSourceDAO.getInstance().save(txLine1.getRevenueSource());
-            
+            */
             /**
              *TESTING PrintOrder (includes PhotoSet, PrintFormat)
              *
@@ -434,6 +434,39 @@ public class tester {
             po.setQuantity(3);
             po.setPrice((po.getPrintFormat().getPrice() * po.getQuantity()));
             RevenueSourceDAO.getInstance().save(po);
+            
+            /*
+             *Testing ConversionOrder (includes conversiontype)
+             */
+            
+            conversionTypeBO ct = conversionTypeDAO.getInstance().create();
+            ct.setDestinationType("DVD");
+            ct.setSourceType("VHS");
+            ct.setPrice(.1);
+            conversionTypeDAO.getInstance().save(ct);
+            
+            conversionTypeBO ct2 = conversionTypeDAO.getInstance().create();
+            ct.setDestinationType("MP4");
+            ct.setSourceType("VHS");
+            ct.setPrice(.4);
+            conversionTypeDAO.getInstance().save(ct);
+            
+            conversionTypeBO ct3 = conversionTypeDAO.getInstance().read(ct2.getId());
+            System.out.println("ct2==ct3 -> " + (ct2 == ct3));
+            
+            // test if all three customer objects are in the Cache
+            System.out.println("ct in Cache -> " + Cache.getInstance().containsKey(ct.getId()) );
+            System.out.println("ct2 in Cache -> " + Cache.getInstance().containsKey(ct2.getId()) );
+            System.out.println("ct3 in Cache -> " + Cache.getInstance().containsKey(ct3.getId()) );
+            
+            ct.setDestinationType("Gold");
+            conversionTypeDAO.getInstance().save(ct);
+            
+            conversionBO conv = (conversionBO)ConversionDAO.getInstance().create();
+            conv.setConversionType(ct);
+            conv.setQuantity(60);
+            conv.setPrice((conv.getQuantity() * conv.getConversionType().getPrice()));
+            RevenueSourceDAO.getInstance().save(conv);
             
             
 //             /**

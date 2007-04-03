@@ -65,6 +65,7 @@ public class ConversionDAO extends RSDAO{
         ResultSet result = ps.executeQuery();
         
         po.setConversionType(conversionTypeDAO.getInstance().read(result.getString("conversiontype")));
+        po.setQuantity(result.getInt("quantity"));
         po.setDirty(false);
         po.setInDB(true);
         
@@ -96,9 +97,10 @@ public class ConversionDAO extends RSDAO{
         conversionBO po = (conversionBO)rsbo;
         
         //insert object into DB
-        PreparedStatement ps = conn.prepareStatement("insert into \"conversionorder\" values (?,?)");
+        PreparedStatement ps = conn.prepareStatement("insert into \"conversionorder\" values (?,?,?)");
         ps.setString(1,po.getId());
         ps.setString(2,po.getConversionType().getId());
+        ps.setInt(3,po.getQuantity());
         ps.execute();
         ps.close();
     }

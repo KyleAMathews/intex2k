@@ -149,7 +149,7 @@ public class conversionTypeDAO{
     
     private synchronized void update(conversionTypeBO conversionType, Connection conn) throws Exception{
         //do update statement
-        PreparedStatement ps = conn.prepareStatement("update \"conversiotype\" set \"sourcetype\" = '" + conversionType.getSourceType() 
+        PreparedStatement ps = conn.prepareStatement("update \"conversiontype\" set \"sourcetype\" = '" + conversionType.getSourceType() 
                + "', \"destinationtype\" = '" + conversionType.getDestinationType() + "', \"price\" = " +
                 conversionType.getPrice() + " where \"id\" = '" + conversionType.getId() + "'");
         ps.execute();
@@ -166,7 +166,7 @@ public class conversionTypeDAO{
     private synchronized void insert(conversionTypeBO conversionType, Connection conn) throws SQLException, Exception{
         conversionType.setInDB(true);
         
-        PreparedStatement ps = conn.prepareStatement("insert into \"photoset\" values (?,?,?)");
+        PreparedStatement ps = conn.prepareStatement("insert into \"conversiontype\" values (?,?,?,?)");
         ps.setString(1,conversionType.getId());
         ps.setString(2,conversionType.getSourceType());
         ps.setString(3,conversionType.getDestinationType());
