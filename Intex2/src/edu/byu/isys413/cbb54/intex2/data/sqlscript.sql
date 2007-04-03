@@ -214,7 +214,8 @@ create table "sale"
 (
     "id" varchar(40) not null primary key,
     "quantity" int,
-    "productid" varchar(40)
+    "productid" varchar(40),
+    "producttype" varchar(30)
 );
 
 create table "rental"
@@ -244,6 +245,13 @@ create table "forsale"
 (
     "id" varchar(40) not null primary key,
     "isnew" smallint
+);
+
+create table "product"
+(
+    "id" varchar(40) not null primary key,
+    "quantity" int,
+    "productType" varchar(30)
 );
 
 INSERT INTO "customer" VALUES ('00000109123b9144eb018b64001000', 'Cameron', 'Burgon', '851 Wymount Terrace', '', 'Provo', 'Utah', '84602', '8013786198', 'wherever@sd.com');
@@ -281,4 +289,4 @@ INSERT INTO "forsale" VALUES('321423421', 1);
 
 INSERT INTO "serviceRepair" VALUES('1234', 123145124314, 124125123123, 'What a mess it was fixing that guys widget -- a nightmare', 10, '2342352342354234', 1241, 151.21); 
 
-INSERT INTO "sale" VALUES('903945804395834958ui', 1, '321423421');
+INSERT INTO "sale" VALUES('903945804395834958ui', 1, '321423421','p');
