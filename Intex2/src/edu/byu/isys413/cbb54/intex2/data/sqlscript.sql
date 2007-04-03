@@ -171,6 +171,7 @@ create table "serviceRepair"
 create table "printorder"
 (
     "id" varchar(40) not null primary key,
+    "poid" varchar(40),
     "quantity" int,
     "photoSet" varchar(30),
     "printformat" varchar(30),
