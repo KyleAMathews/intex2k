@@ -60,9 +60,18 @@ public class SaleDAO extends RSDAO {
         read.setString(1, id);
         ResultSet rs = read.executeQuery();
         
-        // set variables
-        ProductDAO Pdao = ProductFactory.getInstance().getDAO(rs.);
-        Product product = Pdao.read(rs.getString("productID"), conn);
+        // set variables 
+        // check first digit if sku/sn
+        String type = rs.getString("producttype");
+        
+        ProductDAO dao = null;
+        if (type == "p"){
+            dao = PhysicalDAO.getInstance();
+        }else{
+            dao = ConceptualDAO.getInstance();
+        }
+        
+        Product product = dao.read(id, conn);
         sale.setProduct(product);
         sale.setQuantity(rs.getInt("quantity"));
         
@@ -95,10 +104,11 @@ public class SaleDAO extends RSDAO {
         System.out.println("inserting sale");
         Sale sale = (Sale)rsbo;
         PreparedStatement insert = conn.prepareStatement(
-                "INSERT INTO \"sale\" VALUES (?,?,?)");
+                "INSERT INTO \"sale\" VALUES (?,?,?,?)");
         insert.setString(1, sale.getId());
         insert.setDouble(2, sale.getQuantity());
         insert.setString(3, sale.getProduct().getId());
+        insert.setString(4, sale.getProductType());
         insert.executeUpdate();
         sale.setInDB(true);
      }
@@ -107,10 +117,11 @@ public class SaleDAO extends RSDAO {
         System.out.println("Updating sale");
         Sale sale = (Sale)rsbo;
         PreparedStatement update = conn.prepareStatement(
-                "UPDATE \"sale\" SET \"quantity\"=?, \"productID\" = ? WHERE \"id\" = ?");
+                "UPDATE \"sale\" SET \"quantity\"=?, \"productID\" = ?, \"producttype\" = ? WHERE \"id\" = ?");
         update.setDouble(1, sale.getQuantity());
         update.setString(2, sale.getProduct().getId());
-        update.setString(1, sale.getId());
+        update.setString(3, sale.getProductType());
+        update.setString(4, sale.getId());
         update.executeUpdate();
      }
     

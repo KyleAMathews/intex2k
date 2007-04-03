@@ -18,6 +18,7 @@ public class Sale extends RevenueSource {
     
     private int quantity;
     private Product product;
+    private String productType;
     
     /**
      * Create new instance of Sale
@@ -44,5 +45,14 @@ public class Sale extends RevenueSource {
     public void setProduct(Product product) {
         this.dirty = true;
         this.product = product;
+    }
+
+    public String getProductType() {
+        return productType;
+    }
+
+    public void setProductType(String productType) {
+        this.dirty = true;
+        this.productType = productType;
     }
 }

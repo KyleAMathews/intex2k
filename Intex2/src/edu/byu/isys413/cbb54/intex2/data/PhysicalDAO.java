@@ -107,11 +107,11 @@ public class PhysicalDAO extends ProductDAO{
     public void update(Product prod, Connection conn) throws Exception{
         Physical phy = (Physical)prod;
         PreparedStatement update = conn.prepareStatement(
-                "UPDATE \"physical\" SET \"size\"=?, \"lengthofbackup\" = ?, \"price\" = ? WHERE \"id\" = ?");
-        update.setDouble(1, bkup.getSize());
-        update.setDouble(2, bkup.getLengthOfBackup());
-        update.setDouble(3, bkup.getPrice());
-        update.setString(4, bkup.getId());
+                "UPDATE \"physical\" SET \"serialNum\"=?, \"shelfLocation\" = ?, \"forSale\" = ? WHERE \"id\" = ?");
+        update.setString(1, phy.getSerialNum());
+        update.setString(2, phy.getShelfLocation());
+        update.setBoolean(3, phy.isForSale());
+        update.setString(4, phy.getId());
         update.executeUpdate();
     }
     
