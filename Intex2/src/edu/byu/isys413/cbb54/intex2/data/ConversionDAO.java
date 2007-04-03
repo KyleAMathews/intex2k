@@ -9,6 +9,7 @@
 
 package edu.byu.isys413.cbb54.intex2.data;
 
+import com.sun.crypto.provider.RSACipher;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -43,7 +44,7 @@ public class ConversionDAO extends RSDAO{
     /// Create
     
     public RevenueSource create() throws Exception{
-        String id = GUID.generate("po");
+        String id = GUID.generate("co");
         RevenueSource rs = new conversionBO(id);
         System.out.println("I've created a ConversionOrder  :  ID: " + rs.getId());
         
@@ -66,6 +67,7 @@ public class ConversionDAO extends RSDAO{
         
         po.setConversionType(conversionTypeDAO.getInstance().read(result.getString("conversiontype")));
         po.setQuantity(result.getInt("quantity"));
+        po.setPrice(result.getDouble("price"));
         po.setDirty(false);
         po.setInDB(true);
         
@@ -97,10 +99,11 @@ public class ConversionDAO extends RSDAO{
         conversionBO po = (conversionBO)rsbo;
         
         //insert object into DB
-        PreparedStatement ps = conn.prepareStatement("insert into \"conversionorder\" values (?,?,?)");
+        PreparedStatement ps = conn.prepareStatement("insert into \"conversionorder\" values (?,?,?,?)");
         ps.setString(1,po.getId());
         ps.setString(2,po.getConversionType().getId());
         ps.setInt(3,po.getQuantity());
+        ps.setDouble(4,po.getPrice());
         ps.execute();
         ps.close();
     }
