@@ -52,7 +52,7 @@ public class SaleDAO extends RSDAO {
     ///////////////////////////////////////////
     /// Read
     
-    public RevenueSource read(String id, Connection conn){
+    public RevenueSource read(String id, Connection conn) throws Exception{
         Sale sale = new Sale(id);
         
         PreparedStatement read = conn.prepareStatement(
@@ -61,7 +61,9 @@ public class SaleDAO extends RSDAO {
         ResultSet rs = read.executeQuery();
         
         // set variables
-        sale.setProduct(ProductDAO.getInstance().read(rs.getString("productID")));
+        ProductDAO Pdao = ProductFactory.getInstance().getDAO(rs.);
+        Product product = Pdao.read(rs.getString("productID"), conn);
+        sale.setProduct(product);
         sale.setQuantity(rs.getInt("quantity"));
         
         // return the RevenueSource
