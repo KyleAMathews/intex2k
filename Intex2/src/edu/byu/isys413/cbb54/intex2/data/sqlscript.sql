@@ -198,7 +198,8 @@ create table "conversionorder"
 (
     "id" varchar(40) not null primary key,
     "conversiontype" varchar(30),
-    "quantity" int
+    "quantity" int,
+    "price" double
 );
 
 create table "conversiontype"
