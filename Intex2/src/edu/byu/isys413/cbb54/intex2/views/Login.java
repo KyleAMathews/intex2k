@@ -14,7 +14,7 @@ import edu.byu.isys413.cbb54.intex2.data.StoreDAO;
  *
  * @author  tylerf
  */
-public class Login extends javax.swing.JPanel {
+public class Login extends javax.swing.JFrame {
     
     /** Creates new form Login */
     public Login() {
@@ -115,6 +115,17 @@ public class Login extends javax.swing.JPanel {
     private void emailInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailInputActionPerformed
 // TODO add your handling code here:
     }//GEN-LAST:event_emailInputActionPerformed
+    
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Login().setVisible(true);
+            }
+        });
+    }
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
