@@ -197,7 +197,8 @@ create table "photoset"
 create table "conversionorder"
 (
     "id" varchar(40) not null primary key,
-    "conversiontype" varchar(30)
+    "conversiontype" varchar(30),
+    "quantity" int
 );
 
 create table "conversiontype"
