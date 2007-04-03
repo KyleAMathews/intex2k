@@ -12,9 +12,14 @@ package edu.byu.isys413.cbb54.intex2.views;
  */
 public class MainGUI extends javax.swing.JPanel {
     
+    private String storeid = "111";
+    private String empid = "111";
+    
     /** Creates new form MainGUI */
     public MainGUI() {
         initComponents();
+        storeID.setText(storeid);
+        empID.setText(empid);
     }
     
     /** This method is called from within the constructor to
