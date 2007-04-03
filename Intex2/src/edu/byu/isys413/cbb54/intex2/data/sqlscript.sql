@@ -277,6 +277,6 @@ INSERT INTO "forrent" VALUES('54322345', 3, '3245643212342');
 
 INSERT INTO "forsale" VALUES('321423421', 1);
 
-INSERT INTO "serviceRepair" VALUES('1234', 123145124314, 124125123123, 'What a mess it was fixing that guys widget -- a nightmare', 10, '2342352342354234', 12412512312312, 151.21); 
+INSERT INTO "serviceRepair" VALUES('1234', 123145124314, 124125123123, 'What a mess it was fixing that guys widget -- a nightmare', 10, '2342352342354234', 1241, 151.21); 
 
 INSERT INTO "sale" VALUES('903945804395834958ui', 1, '321423421');

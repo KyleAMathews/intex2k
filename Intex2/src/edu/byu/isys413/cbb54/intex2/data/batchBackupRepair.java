@@ -25,19 +25,19 @@ public class batchBackupRepair {
     /** Creates a new instance of batchBackupRepair */
     public batchBackupRepair() {
     }
-    public void batch() throws DataException {
+    public static void main(String[] args) throws DataException {
         Connection conn = null;
         List<String> repairEmails = new LinkedList<String>();
         
         try {
             // retrieve a database connection from the pool
             conn = ConnectionPool.getInstance().get();
-            
+            System.out.println(System.currentTimeMillis() - (long)(30*24*60*60*1000));
             // select repair transactions which are 30 days old and send email
-            PreparedStatement ps = conn.prepareStatement("SELECT * FROM \"backupRepair\" WHERE \"dateEnded\" <= ?");
-            ps.setString(1, Long.toString((System.currentTimeMillis()) - (long)(30*24*60*60*1000))); //subtract num of miliseconds in 30 days from current time
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM \"serviceRepair\" WHERE \"dateEnded\" <= ?");
+            ps.setLong(1, (System.currentTimeMillis() - (long)(30*24*60*60*1000))); //subtract num of miliseconds in 30 days from current time
             ResultSet rs = ps.executeQuery();
-            
+            System.out.println(rs.getString("id"));
             while(rs.next()){
                 // select transactionline using repair revenuesource id
                 PreparedStatement txlinePS = conn.prepareStatement("SELECT * FROM \"transactionline\" WHERE \"revenuesourceid\" = ?");

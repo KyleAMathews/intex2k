@@ -27,9 +27,16 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        try{
         //new GUI().setVisible(true);//creates and loads the gui 
         new tester().main(args);
-        // new batchBackupRepair().batch();
+        batchBackupRepair batchbackup = new batchBackupRepair();
+        batchbackup.batch();
+        
+        
+        }catch(DataException e){
+            System.out.println(e);        }
+        
         
     }
     
