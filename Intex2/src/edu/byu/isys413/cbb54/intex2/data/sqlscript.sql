@@ -26,6 +26,8 @@ DROP TABLE "forrent";
 DROP TABLE "forsale";
 DROP TABLE "conversionorder";
 DROP TABLE "conversiontype";
+DROP TABLE "conceptual";
+DROP TABLE "product";
 
 
 
@@ -232,6 +234,14 @@ create table "physical"
     "serialnum" varchar(40),
     "shelflocation" varchar(40),
     "forsale" smallint
+);
+
+create table "conceptual"
+(
+    "id" varchar(40) not null primary key,
+    "name" varchar(60),
+    "description" varchar(120),
+    "avgCost" double
 );
 
 create table "forrent"
