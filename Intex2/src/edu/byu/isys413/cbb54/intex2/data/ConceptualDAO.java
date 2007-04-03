@@ -43,8 +43,8 @@ public class ConceptualDAO extends ProductDAO{
     
     public Product create() throws Exception{
         String id = GUID.generate();
-        Product product = new Physical(id);
-        System.out.println("I've created a Product  =>  ID: " + product.getId());
+        Product product = new Conceptual(id);
+        System.out.println("I've created a Conceptaul Product  =>  ID: " + product.getId());
         return product;
     }
     
@@ -52,22 +52,21 @@ public class ConceptualDAO extends ProductDAO{
     /// Read
     
     public Product read(String id, Connection conn) throws Exception{
-        Physical phy = new Physical(id);
+        Conceptual concept = new Conceptual(id);
         
         PreparedStatement read = conn.prepareStatement(
-                "SELECT * FROM \"physical\" WHERE \"id\" = ?");
+                "SELECT * FROM \"conceptual\" WHERE \"id\" = ?");
         read.setString(1, id);
         ResultSet rs = read.executeQuery();
         
         // set variables
-        phy.setSerialNum(rs.getString("serialNum"));
-        phy.setShelfLocation(rs.getString("shelfLocation"));
-        phy.setForSale(rs.getBoolean("forSale"));
-        phy.setPrice(rs.getDouble("price"));
-        phy.setInDB(true);
+        concept.setName(rs.getString("name"));
+        concept.setDesc(rs.getString("description"));
+        concept.setAvgCost(rs.getDouble("avgCost"));
+        concept.setInDB(true);
         
         // return the RevenueSource
-        Product product = (Product)phy;
+        Product product = (Product)concept;
         return product;
     }
     
@@ -88,14 +87,14 @@ public class ConceptualDAO extends ProductDAO{
     }
     
     public void insert(Product prod, Connection conn) throws Exception{
-        System.out.println("inserting physical");
-        Physical phy = (Physical)prod;
+        System.out.println("inserting conceptual");
+        Conceptual conc = (Conceptual)prod;
         PreparedStatement insert = conn.prepareStatement(
-                "INSERT INTO \"physical\" VALUES (?,?,?,?)");
-        insert.setString(1, phy.getId());
-        insert.setString(2, phy.getSerialNum());
-        insert.setString(3, phy.getShelfLocation());
-        insert.setBoolean(4, phy.isForSale());
+                "INSERT INTO \"conceptual\" VALUES (?,?,?,?)");
+        insert.setString(1, conc.getId());
+        insert.setString(2, conc.getName());
+        insert.setString(3, conc.getDesc());
+        insert.setDouble(4, conc.getAvgCost());
 
         insert.executeUpdate();
         
@@ -104,13 +103,13 @@ public class ConceptualDAO extends ProductDAO{
     }
     
     public void update(Product prod, Connection conn) throws Exception{
-        Physical phy = (Physical)prod;
+        Conceptual conc = (Conceptual)prod;
         PreparedStatement update = conn.prepareStatement(
-                "UPDATE \"physical\" SET \"serialNum\"=?, \"shelfLocation\" = ?, \"forSale\" = ? WHERE \"id\" = ?");
-        update.setString(1, phy.getSerialNum());
-        update.setString(2, phy.getShelfLocation());
-        update.setBoolean(3, phy.isForSale());
-        update.setString(4, phy.getId());
+                "UPDATE \"conceptual\" SET \"name\"=?, \"description\" = ?, \"avgCost\" = ? WHERE \"id\" = ?");
+        update.setString(1, conc.getName());
+        update.setString(2, conc.getDesc());
+        update.setDouble(3, conc.getAvgCost());
+        update.setString(4, conc.getId());
         update.executeUpdate();
     }
     
