@@ -29,9 +29,8 @@ public class Main {
      */
     public static void main(String[] args) {
         //new tester().main(args);
-        
-        Login l = new Login();
-        l.setVisible(true);
+        Login lo = new Login();
+        lo.setVisible(true);
         
     }
     

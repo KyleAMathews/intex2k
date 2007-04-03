@@ -19,6 +19,7 @@ public class Login extends javax.swing.JPanel {
     /** Creates new form Login */
     public Login() {
         initComponents();
+        System.out.println("starting login");
     }
     
     /** This method is called from within the constructor to
